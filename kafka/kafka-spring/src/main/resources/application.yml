@@ -1,0 +1,27 @@
+server:
+  port: 8888
+
+spring:
+  kafka:
+    bootstrap-servers: 172.16.20.220:9092
+    producer:
+
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # batch-size: 100
+
+    consumer:
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: test
+      bootstrap-servers: 172.16.20.220:9092
+      enable-auto-commit: false
+      max-poll-records: 100
+    listener:
+      ack-mode: manual_immediate
+      poll-timeout:
+
+
+logging:
+  level:
+    root: info

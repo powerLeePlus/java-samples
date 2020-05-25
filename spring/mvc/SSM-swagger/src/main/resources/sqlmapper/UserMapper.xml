@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lwq.java.web.ssm_swagger.dao.UserDao">
+    <sql id="base_column_list">
+        id,username,password,lastlogin
+    </sql>
+
+    <insert id="insert" parameterType="User">
+        insert into
+        user(<include refid="base_column_list"/>)
+        values(#{id},#{username},#{password},#{lastlogin})
+    </insert>
+
+    <!-- select元素，在此元素内写查询语句,resultType:结果类型 -->
+    <select id="list" resultType="User">
+        select
+        <include refid="base_column_list"/>
+        from user
+    </select>
+</mapper>
