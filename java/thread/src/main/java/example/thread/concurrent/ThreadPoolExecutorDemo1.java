@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lwq
- * @date 2020/6/4 0004
  */
 @Service
 @Slf4j
@@ -52,14 +51,14 @@ public class ThreadPoolExecutorDemo1 {
 		executorHandler = new ThreadPoolExecutor(0, processorNum > CORE_POOL_SIZE ? 2 * processorNum :
 				2 * CORE_POOL_SIZE
 				, 1L, TimeUnit.MINUTES, new LinkedBlockingQueue<>(2),
-				new HandlerThreadFactory("sync-crm-handler-pool-"));
+				new HandlerThreadFactory("my-thread-pool-"));
 		//executorHandler.allowCoreThreadTimeOut(true);*/
 
 		// 二、corePoolSize > 0，allowCoreThreadTimeOut=true
 		executorHandler = new ThreadPoolExecutor(3, processorNum > CORE_POOL_SIZE ? 2 * processorNum :
 				2 * CORE_POOL_SIZE
 				, 1L, TimeUnit.MINUTES, new LinkedBlockingQueue<>(2),
-				new HandlerThreadFactory("sync-crm-handler-pool-"));
+				new HandlerThreadFactory("my-thread-pool-"));
 		executorHandler.allowCoreThreadTimeOut(true);
 
 	}
