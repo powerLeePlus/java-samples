@@ -1,16 +1,22 @@
 package com.example.es.demo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +29,23 @@ public class GoodsController {
     private Integer PAGESIZE = 10;
 
     @Autowired
+    private RestHighLevelClient restHighLevelClient;
+    @Autowired
     private GoodsRepository goodsRepository;
+    @Autowired
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+    @GetMapping("ping")
+    public String ping() throws IOException {
+        return "ping: " + restHighLevelClient.ping(RequestOptions.DEFAULT);
+    }
+
+    @GetMapping("saveAndFind")
+    public GoodsInfo saveAndFind() {
+        GoodsInfo goodsInfo = new GoodsInfo(2L, "macbook", "mac笔记本");
+        elasticsearchRestTemplate.save(goodsInfo);
+        return elasticsearchRestTemplate.get("2", GoodsInfo.class);
+    }
 
     //http://localhost:8080/save
     // {"id":0,"name":"手机","description":"商品 手机"}
@@ -65,27 +87,24 @@ public class GoodsController {
         return goodsInfos;
     }
 
-    //http://127.0.0.1:8080/getGoodsList?query=手机
-    //http://localhost:8888/getGoodsList?query=商品&pageNumber=1
-    //根据关键字"商品"去查询列表，name或者description包含的都查询
-    @GetMapping("getGoodsList")
-    public List<GoodsInfo> getList(Integer pageNumber, String query) {
-        if (pageNumber == null) {
-            pageNumber = 0;
-        }
+    //根据name搜索
+    @GetMapping("search/{name}")
+    public SearchHits<GoodsInfo> getList(String name) {
         //es搜索默认第一页页码是0
-        SearchQuery searchQuery = getEntitySearchQuery(pageNumber, PAGESIZE, query);
-        Page<GoodsInfo> goodsPage = goodsRepository.search(searchQuery);
-        return goodsPage.getContent();
+        // QueryBuilder queryBuilder = getEntitySearchQuery(pageNumber, PAGESIZE, query);
+        CriteriaQuery query = new CriteriaQuery(Criteria.where("name").contains(name));
+        SearchHits<GoodsInfo> goodsInfoSearchHits = elasticsearchRestTemplate.search(query, GoodsInfo.class);
+
+        return goodsInfoSearchHits;
     }
 
-    private SearchQuery getEntitySearchQuery(int pageNumber, int pageSize, String searchContent) {
+    private QueryBuilder getEntitySearchQuery(int pageNumber, int pageSize, String searchContent) {
         FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery(QueryBuilders.matchPhraseQuery("name", searchContent));
         // 设置分页
         PageRequest pageable = PageRequest.of(pageNumber, pageSize);
         return new NativeSearchQueryBuilder()
                 .withPageable(pageable)
-                .withQuery(functionScoreQueryBuilder).build();
+                .withQuery(functionScoreQueryBuilder).build().getQuery();
     }
 
 }

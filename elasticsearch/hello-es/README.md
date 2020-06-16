@@ -1,4 +1,5 @@
-# 说明
+## 说明
+使用spring-boot-starter-data-elasticsearch，通过RestHighLevelClient、ElasticsearchRepository、ElasticsearchRestTemplate操作es
 ## 版本
 - spring-data-elasticsearch3.2.0 （对应springboot2.2.0，对应spring5.2.0 ）以下（不含）， 没有ElasticsearchRestTemplate。
 - 这个版本
