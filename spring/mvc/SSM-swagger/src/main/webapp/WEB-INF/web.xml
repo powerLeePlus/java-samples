@@ -7,20 +7,20 @@
     <display-name>SSM-swagger</display-name>
 
     <!-- Spring MVC servlet -->
-<servlet>
-    <servlet-name>SpringMVC</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
-    </init-param>
-    <!--表示启动容器时初始化该Servlet -->
-    <load-on-startup>1</load-on-startup>
-</servlet>
-<servlet-mapping>
-    <servlet-name>SpringMVC</servlet-name>
-    <url-pattern>/</url-pattern>
-</servlet-mapping>
+    <servlet>
+        <servlet-name>SpringMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:applicationContext.xml</param-value>
+        </init-param>
+        <!--表示启动容器时初始化该Servlet -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringMVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <!--为了实现REST风格，SpringMVC拦截了所有的请求，那么同时对*.js,*.jpg等静态文件的访问也就被拦截了，下面配置对客户端请求的静态资源如图片、JS文件等的请求交由默认的servlet，而不是SpringMVC进行处理。也可以通过spring配置-->
     <!--<servlet-mapping>
