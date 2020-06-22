@@ -42,6 +42,10 @@
 **/gradlew
 **/gradlew.bat
 
+### MAVEN ###
+**/mvnw
+**/mvnw.cmd
+
 
 
 
