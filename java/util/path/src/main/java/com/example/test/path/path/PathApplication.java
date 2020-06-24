@@ -12,6 +12,9 @@ public class PathApplication {
         SpringApplication.run(PathApplication.class, args);
         Path.testPath();
         //Path.getResource();
+
+        System.exit(0);
+
     }
 
 }
