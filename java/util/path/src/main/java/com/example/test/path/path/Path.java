@@ -99,6 +99,8 @@ public class Path {
             }
         }
 
+        System.out.println(sb.toString());
+
     }
 
     public static void checkZZhonwenPath(){

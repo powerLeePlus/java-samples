@@ -10,7 +10,7 @@ public class PathApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(PathApplication.class, args);
-        //Path.testPath();
+        Path.testPath();
         //Path.getResource();
     }
 
