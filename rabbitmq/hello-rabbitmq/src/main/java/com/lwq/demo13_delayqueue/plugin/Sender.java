@@ -1,5 +1,7 @@
 package com.lwq.demo13_delayqueue.plugin;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +44,7 @@ public class Sender {
 			headers.put("x-delay",delayTime);//消息延迟时间
 			AMQP.BasicProperties props = new AMQP.BasicProperties.Builder()
 					.headers(headers).build();
-			String message = "序号:" + i + ",时间:";
+			String message = "序号:" + i + ",时间: " + LocalDateTime.now(ZoneId.systemDefault()).toString();
 			channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, props, message.getBytes());
 			System.out.println("Sent message:" + message);
 		}
