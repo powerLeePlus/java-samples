@@ -1,4 +1,4 @@
-package com.example.es.demo;
+package demo.lwq.es;
 
 import java.io.Serializable;
 

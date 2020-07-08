@@ -1,4 +1,4 @@
-package com.example.es.demo;
+package demo.lwq.es;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;

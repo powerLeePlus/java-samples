@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 	
 	<modules>
-		<module>hello-es</module>
+		<module>springboot-elasticsearch</module>
 	</modules>
 
     <dependencies>
