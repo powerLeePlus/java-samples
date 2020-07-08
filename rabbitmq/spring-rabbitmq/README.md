@@ -22,3 +22,4 @@ spring-rabbit的常用配置都在里面，而且也都写了注释，就不再�
 
 关于消息转换器我使用的是Jackson2JsonMessageConverter，其实一般发个简单文本或者json字符串消息就够日常使用了，如果想要发一些复杂的消息内容也可以自定义消息转换器，实现MessageConverter接口即可。
 
+### 测试发布消息在`ProducerTest`中

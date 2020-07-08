@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: springboot-rabbitmq-producer
+
+  # 连接rabbitmq
+  rabbitmq:
+    addresses: 172.16.20.220
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /myvhost
+    connection-timeout: 15000ms
+
+    # 开启confirm模式
+    #publisher-confirms: true # 弃用了，用 publisher-confirm-type 代替
+    publisher-confirm-type: correlated
+    # 开启return模式
+    publisher-returns: true
+    template:
+      mandatory: true
+
+      retry:
+        # 启用重试策略
+        enabled: true
+        # 最大尝试次数3
+        max-attempts: 3
+        # 初始两次尝试时间间隔2000ms
+        initial-interval: 2000ms
+        # 两次尝试时间间隔最大不能超过5000ms
+        max-interval: 5000ms
+        # 下次尝试时间间隔是上次时间间隔的倍数(尝试时间间隔为2000ms,2000ms*2,2000ms*2*2......)
+        multiplier: 2
+
+
+

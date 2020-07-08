@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: springboot-rabbitmq-consumer
+
+  rabbitmq:
+    #\u8FDE\u63A5\u4FE1\u606F
+    addresses: 172.16.20.220
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /myvhost
+    connection-timeout: 15000ms
+    #\u8BBE\u7F6Eack\u6A21\u5F0F\u4E3A\u624B\u52A8ack,\u5E76\u884C\u6D88\u8D39\u6570\u91CF\uFF0C\u6700\u5927\u5E76\u884C\u6D88\u8D39\u6570\u91CF
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 2
+        max-concurrency: 5
+
+        # \u4E00\u822C\u6D88\u8D39\u8005\u81EA\u52A8\u7B7E\u6536\u6A21\u5F0F\u4E0B\u53EF\u4EE5\u6DFB\u52A0\u4E0B\u9762\u914D\u7F6E\uFF0C\u7528\u4E8E\u6D88\u8D39\u629B\u51FA\u5F02\u5E38\u540E\u8FDB\u884C\u6D88\u606F\u91CD\u65B0\u6295\u9012\u8BBE\u7F6E
+#        retry:
+#          # \u542F\u7528\u91CD\u8BD5\u7B56\u7565
+#          enabled: true
+#          # \u6700\u5927\u5C1D\u8BD5\u6B21\u65703
+#          max-attempts: 3
+#          # \u521D\u59CB\u4E24\u6B21\u5C1D\u8BD5\u65F6\u95F4\u95F4\u96942000ms
+#          initial-interval: 2000ms
+#          # \u4E24\u6B21\u5C1D\u8BD5\u65F6\u95F4\u95F4\u9694\u6700\u5927\u4E0D\u80FD\u8D85\u8FC75000ms
+#          max-interval: 5000ms
+#          # \u4E0B\u6B21\u5C1D\u8BD5\u65F6\u95F4\u95F4\u9694\u662F\u4E0A\u6B21\u65F6\u95F4\u95F4\u9694\u7684\u500D\u6570(\u5C1D\u8BD5\u65F6\u95F4\u95F4\u9694\u4E3A2000ms,2000ms*2,2000ms*2*2......)
+#          multiplier: 2
+#
+#        #\u91CD\u8BD5\u6B21\u6570\u8D85\u8FC7\u4E0A\u9762\u7684\u8BBE\u7F6E\u4E4B\u540E\u662F\u5426\u4E22\u5F03(\u6D88\u8D39\u8005listener\u629B\u51FA\u5F02\u5E38\uFF0C\u662F\u5426\u91CD\u56DE\u961F\u5217\uFF0C\u9ED8\u8BA4true\uFF1A\u91CD\u56DE\u961F\u5217\uFF0C false\u4E3A\u4E0D\u91CD\u56DE\u961F\u5217(\u7ED3\u5408\u6B7B\u4FE1\u4EA4\u6362\u673A))
+#        default-requeue-rejected: false
+
+
