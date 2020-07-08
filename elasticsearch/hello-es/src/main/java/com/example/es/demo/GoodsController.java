@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -29,15 +31,55 @@ public class GoodsController {
     private Integer PAGESIZE = 10;
 
     @Autowired
+    private RestClient restClient;
+    @Autowired
     private RestHighLevelClient restHighLevelClient;
+
+    // @Autowired
+    // private TransportClient transportClient;
+
     @Autowired
     private GoodsRepository goodsRepository;
+
+    /* The ElasticsearchRestTemplate is an implementation of the ElasticsearchOperations interface
+     * using the High Level REST Client.
+     */
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+    /* The ElasticsearchTemplate is an implementation of the ElasticsearchOperations interface
+     * using the Transport Client.
+     */
+    //@Autowired
+    // private ElasticsearchTemplate elasticsearchTemplate;  // 需要transport client
+
+    // @GetMapping("transport/{index}")
+    // public String transport(@PathVariable String index) throws IOException {
+    //     IndicesExistsResponse inExistsResponse = transportClient.admin().indices()
+    //             .exists(new IndicesExistsRequest(index)).actionGet();
+    //     if (inExistsResponse.isExists()) {
+    //         System.out.println("Index [" + index + "] is exist!");
+    //     } else {
+    //         System.out.println("Index [" + index + "] is not exist!");
+    //     }
+    //     return "index: " + index + " ; 存在?" + inExistsResponse.isExists();
+    // }
 
     @GetMapping("ping")
     public String ping() throws IOException {
         return "ping: " + restHighLevelClient.ping(RequestOptions.DEFAULT);
+    }
+
+    @GetMapping("nodes")
+    public String nodes() throws IOException {
+        return "nodes: " + restClient.getNodes().stream().map(node -> node.toString()).collect(Collectors.joining(","));
+    }
+
+    @GetMapping("index")
+    public Boolean createIndex(){
+        return elasticsearchRestTemplate.indexOps(GoodsInfo.class).create();
+        // return elasticsearchTemplate.createIndex(GoodsInfo.class);
+
     }
 
     @GetMapping("saveAndFind")

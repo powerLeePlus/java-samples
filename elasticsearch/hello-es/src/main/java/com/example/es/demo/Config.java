@@ -10,22 +10,16 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 
 /**
+ * 自定义配置 es client连接，使用这个配置，就不需要在application.properties中配置es相关配置项了。二选其一
  * @author lwq
  * @date 2020/3/27 0027
  */
-//@Configuration
+// @Configuration
 public class Config {
 
     /**
-     * transport client 方式
+     * 默认transport client端口9300, rest client端口9200
      * */
-    /*@Bean(name = "transportClient")
-    public TransportClient transportClient() throws UnknownHostException {
-
-        TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
-                .addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
-        return client;
-    }*/
 
     /**
      * rest client 方式， 包括 restClient 和 restHighLevelClient
@@ -42,14 +36,23 @@ public class Config {
 
     @Bean("restClientBuilder")
     public RestClientBuilder restClientBuilder(){
-        final BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
-        basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "elastic"));
 
         HttpHost httpHost = new HttpHost("127.0.0.1", 9200);
         RestClientBuilder builder = RestClient.builder(httpHost);
-       /* builder.setHttpClientConfigCallback( httpAsyncClientBuilder -> {
+
+        // 配置用户名密码
+        final BasicCredentialsProvider basicCredentialsProvider = new BasicCredentialsProvider();
+        basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "elastic"));
+        builder.setHttpClientConfigCallback( httpAsyncClientBuilder -> {
             httpAsyncClientBuilder.setDefaultCredentialsProvider(basicCredentialsProvider);
             return httpAsyncClientBuilder;
+        });
+        /*builder.setRequestConfigCallback(requestConfigBuilder -> {
+            //
+            // requestConfigBuilder.setConnectTimeout(-1);
+            // requestConfigBuilder.setSocketTimeout(-1);
+            // requestConfigBuilder.setConnectionRequestTimeout(-1);
+            return requestConfigBuilder;
         });*/
 
         /*
@@ -67,5 +70,64 @@ public class Config {
        return builder;
     }
 
+    /**
+     * transport client 方式 ,
+     * 不加 ssl + 用户名密码认证
+     * */
+    /*@Bean(name = "transportClient")
+    public TransportClient transportClient() throws UnknownHostException {
+
+        TransportClient transportClient = new PreBuiltTransportClient(Settings.EMPTY)
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+
+        *//*Settings esSetting = Settings.builder().put("cluster.name", "my-application") // 集群名字
+                // .put("client.transport.sniff", true)// 增加嗅探机制，找到ES集群
+                // .put("thread_pool.search.size", 5)// 增加线程池 threadpool search个数
+                .build();
+        TransportClient transportClient = new PreBuiltTransportClient(esSetting);*//*
+
+        return transportClient;
+    }*/
+
+    /**
+     * transport client方式
+     * 加 ssl + 用户名密码认证，用户名密码认证和ssl认证可以分别单独开启，也可以一起启用
+     */
+    // @Bean
+    // public TransportClient transportClient() throws UnknownHostException {
+    //     // 配置信息
+    //     Settings esSetting = Settings.builder()
+    //             // .put("cluster.name", "my-application") // 集群名字
+    //             /* 启用用户名密码  --->  对应配置elasticsearch配置文件elasticsearch.yml中的xpack.security.enabled: true
+    //              * 可以单独开启，而不开启ssl认证
+    //              */
+    //             .put("xpack.security.user", "elastic:elastic")
+    //             /* 启动ssl认证  --->  对应配置elasticsearch配置文件elasticsearch.yml中的 xpack.security.transport.ssl.enabled: true
+    //              * 与以下xpack.security.transport.ssl.keystore.path xpack.security.transport.ssl.truststore.path xpack
+    //              * .security.transport.ssl.verification_mode一起使用
+    //              */
+    //             // .put("xpack.security.transport.ssl.enabled", true)
+    //             // ssl认证方式  --->  对应配置elasticsearch配置文件elasticsearch.yml中的 xpack.security.transport.ssl.verification_mode: certificate
+    //             // .put("xpack.security.transport.ssl.verification_mode", "certificate")
+    //             // ssl证书路径  --->  对应配置elasticsearch配置文件elasticsearch.yml中的 xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
+    //             // .put("xpack.security.transport.ssl.keystore.path", "")
+    //             // ssl证书路径  --->  对应配置elasticsearch配置文件elasticsearch.yml中的 xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
+    //             // .put("xpack.security.transport.ssl.truststore.path", "")
+    //             // .put("client.transport.sniff", true)// 增加嗅探机制，找到ES集群
+    //             // .put("thread_pool.search.size", 5)// 增加线程池 threadpool search个数
+    //             .build();
+    //     TransportClient transportClient = new PreBuiltXPackTransportClient(esSetting);
+    //
+    //     // 配置连接地址
+    //     // 单机
+    //     transportClient.addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300)); //
+    //     // 集群
+    //     // TransportAddress address1 = new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300);
+    //     // TransportAddress address2 = new TransportAddress(InetAddress.getByName("172.16.20.220"), 9300);
+    //     // transportClient.addTransportAddresses(address1, address2);
+    //
+    //     return transportClient;
+    //
+    // }
 
 }

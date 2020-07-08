@@ -20,6 +20,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
+
+        <elasticsearch.version>7.6.1</elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -34,10 +36,44 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
-      <!--  <dependency>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <!-- transport client连接方式依赖 start-->
+        <!--<dependency>
             <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        &lt;!&ndash; transport client连接配置加密认证需要xpack依赖 &ndash;&gt;
+        <dependency>
+            <groupId>com.xpack</groupId>
+            <artifactId>x-pack-transport</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xpack</groupId>
+            <artifactId>x-pack-core</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.unboundid</groupId>
+            <artifactId>unboundid-ldapsdk</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        &lt;!&ndash; Apache Commons Lang，一个Java实用程序类包，用于java.lang层次结构中的类，或被认为是标准的，以证明java.lang中的存在。 &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8</version>
         </dependency>-->
+        <!-- transport client连接方式依赖 end-->
+        <!--  <dependency>
+			  <artifactId>elasticsearch-rest-high-level-client</artifactId>
+			  <groupId>org.elasticsearch.client</groupId>
+		  </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
