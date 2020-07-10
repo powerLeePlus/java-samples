@@ -38,7 +38,7 @@ public class CustomerRealm extends AuthorizingRealm {
 		if("xiaochen".equals(principal)){
 			String salt = "Q4F%";  // 盐
 
-			String password = new Md5Hash(new String((char[]) token.getCredentials()), salt, 1024).toString();  // 等于"3c88b338102c1a343bcb88cd3878758e"
+			String password = new Md5Hash("123", salt, 1024).toString();  // 等于"3c88b338102c1a343bcb88cd3878758e"
 			// String password = "3c88b338102c1a343bcb88cd3878758e";  // 保存在数据库的md5+salt之后的密码
 
 			return new SimpleAuthenticationInfo(principal,password,
