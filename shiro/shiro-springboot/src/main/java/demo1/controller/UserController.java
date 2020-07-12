@@ -1,4 +1,4 @@
-package com.lwq.demo1_simple.controller;
+package demo1.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -73,5 +73,5 @@ public class UserController {
 		return "/users";
 	}*/
 
-	// 授权方式3：标签   <shiro:hasRole name="admin">
+	// 授权方式3：ShiroConfig setFilterChainDefinitionMap + 标签,如： map.put("/index", "roles") + <shiro:hasRole name="admin">
 }

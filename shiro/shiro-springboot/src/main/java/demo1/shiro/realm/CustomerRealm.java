@@ -1,6 +1,7 @@
-package com.lwq.demo1_simple.shiro.realm;
+package demo1.shiro.realm;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -19,6 +20,9 @@ import org.apache.shiro.util.ByteSource;
  * @date 2020/7/9 0009
  */
 public class CustomerRealm extends AuthorizingRealm {
+
+	public static final List<String> PERMS_LIST = Arrays.asList("user:add:*", "user:delete:*", "user:update:*", "user" +
+			":find:*", "order:find:*");
 
 	/** 认证方法
 	 *
@@ -58,12 +62,14 @@ public class CustomerRealm extends AuthorizingRealm {
 		System.out.println("调用授权验证: "+primaryPrincipal);
 		//根据主身份信息获取角色 和 权限信息
 
-		//授权角色信息
+		//授权角色信息和资源权限
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		if ("xiaochen".equals(primaryPrincipal)) {
 			simpleAuthorizationInfo.addRoles(Arrays.asList("admin", "user"));
+			simpleAuthorizationInfo.addStringPermissions(PERMS_LIST);
 		} else if ("lwq".equals(primaryPrincipal)) {
 			simpleAuthorizationInfo.addRole("user");
+			simpleAuthorizationInfo.addStringPermissions(PERMS_LIST.subList(0, PERMS_LIST.size() - 1));
 		}
 		// simpleAuthorizationInfo.addRoles();
 		// simpleAuthorizationInfo.addStringPermission();

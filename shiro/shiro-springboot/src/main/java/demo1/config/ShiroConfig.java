@@ -1,4 +1,4 @@
-package com.lwq.demo1_simple.config;
+package demo1.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.lwq.demo1_simple.shiro.realm.CustomerRealm;
+import demo1.shiro.realm.CustomerRealm;
 
 /**
  * 用来整合shiro框架相关的配置类
@@ -39,6 +39,9 @@ public class ShiroConfig {
 		map.put("/hello", "anon");
 		map.put("/hello.jsp", "anon");
 		map.put("/user/login","anon");
+		map.put("/","anon");
+		map.put("/index","anon");
+		map.put("/index.jsp","anon");
 
 		// 配置退出过滤器，其中具体的退出代码 Shiro已经替我们实现了
 		// map.put("/user/logout", "logout");
@@ -48,6 +51,7 @@ public class ShiroConfig {
 
 		// 角色权限 注意：perms，roles，ssl，rest，port这种继承自AuthorizationFilter的filter才会使setUnauthorizedUrl()生效
 		map.put("/index", "roles");
+		map.put("/users.jsp", "roles[user]");
 
 		//默认认证界面（登录）路径 ，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		shiroFilterFactoryBean.setLoginUrl("/login.jsp");

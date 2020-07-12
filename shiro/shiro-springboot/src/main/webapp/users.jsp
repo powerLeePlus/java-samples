@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>用户列表</title>
 </head>
 <body>
 
@@ -17,9 +17,6 @@
 <p>用户列表：</p>
 <ul>
     <li>占位符</li>
-    <li>张三</li>
-    <li>李四</li>
-    <li>王五</li>
 </ul>
 
 

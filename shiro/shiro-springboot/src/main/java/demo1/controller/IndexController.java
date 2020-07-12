@@ -1,4 +1,4 @@
-package com.lwq.demo1_simple.controller;
+package demo1.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -18,7 +18,6 @@ public class IndexController {
 	@RequestMapping("index")
 	public String index(Model model) {
 		System.out.println("跳转到主页");
-		model.addAttribute("currUser", SecurityUtils.getSubject().getPrincipal().toString());
 		return "index"; // 要带着后缀就要用redirect
 	}
 
