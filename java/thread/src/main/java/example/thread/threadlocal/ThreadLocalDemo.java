@@ -36,6 +36,9 @@ public class ThreadLocalDemo {
 
 	ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(10, 100, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(1000));
 
+	/**
+	 * 线程不安全，见 {@link SimpleDateFormatTest}
+	 */
 	public void test0() {
 		for (int i = 0; i < 1000; i++) {
 			poolExecutor.execute(new Runnable() {
