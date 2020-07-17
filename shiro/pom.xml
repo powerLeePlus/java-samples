@@ -11,6 +11,7 @@
 	<modules>
 		<module>shiro-helloworld</module>
 		<module>shiro-springboot</module>
+		<module>shiro-oauth2</module>
 	</modules>
 
 	<properties>
