@@ -57,5 +57,16 @@ public class CountDownLatchDemo {
 		//由于countDownLatch.await()，只有等所有for内子线程执行完，并调用countDownLatch.countDown()后才会执行下面代码
 		// count个线程调用count次countDown()，countDownLatch计数器正好等于0，门栓打开，线程释放阻塞状态。
 		System.out.println("main thread end!");
+
+		/* Output:
+		* main thread wait!
+		* 第1个线程开始执行
+		* 第2个线程开始执行
+		* 第3个线程开始执行
+		* 第3个线程执行结束
+		* 第2个线程执行结束
+		* 第1个线程执行结束
+		* main thread end!
+		*/
 	}
 }
