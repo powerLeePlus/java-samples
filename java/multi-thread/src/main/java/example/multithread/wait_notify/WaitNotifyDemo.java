@@ -1,4 +1,4 @@
-package example.thread.wait_notify;
+package example.multithread.wait_notify;
 
 import java.util.Scanner;
 

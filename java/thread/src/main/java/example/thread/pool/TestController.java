@@ -1,4 +1,4 @@
-package example.thread.concurrent;
+package example.thread.pool;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

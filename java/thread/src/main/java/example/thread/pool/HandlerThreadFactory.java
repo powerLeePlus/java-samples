@@ -1,4 +1,4 @@
-package example.thread.concurrent;
+package example.thread.pool;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

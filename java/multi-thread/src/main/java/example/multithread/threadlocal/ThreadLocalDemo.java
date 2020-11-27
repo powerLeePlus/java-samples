@@ -1,4 +1,4 @@
-package example.thread.threadlocal;
+package example.multithread.threadlocal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
