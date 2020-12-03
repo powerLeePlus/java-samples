@@ -88,6 +88,48 @@ public class SemaphoreDemo {
 			}
 		}
 	}
+	
+	/**
+	 * 交替输出1,2,1,2
+	 */
+	public static void test3() throws InterruptedException {
+		ExecutorService service = Executors.newCachedThreadPool();
+		Semaphore sp = new Semaphore(1);
+		MyRunnalbe myRunnalbe1 = new MyRunnalbe(sp, 1);
+		MyRunnalbe myRunnalbe3 = new MyRunnalbe(sp, 2);
+
+		while (true) {
+			service.execute(myRunnalbe1);
+			TimeUnit.SECONDS.sleep(1);
+			service.execute(myRunnalbe3);
+			TimeUnit.SECONDS.sleep(1);
+		}
+	}
+
+	public static class MyRunnalbe implements Runnable {
+
+		private Semaphore sp;
+		private Integer num;
+
+		public MyRunnalbe(Semaphore sp, Integer num) {
+			this.sp = sp;
+			this.num = num;
+		}
+
+		@Override
+		public void run() {
+			// while (true) {
+				try {
+					sp.acquire();
+					System.out.println(num);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} finally {
+					sp.release();
+				}
+			// }
+		}
+	}
 
 	/** 其他方法
 	 * 1、acquire(int permits)
@@ -125,6 +167,7 @@ public class SemaphoreDemo {
 
 	public static void main(String[] args) throws InterruptedException {
 		// test1();
-		test2();
+		// test2();
+		test3();
 	}
 }
