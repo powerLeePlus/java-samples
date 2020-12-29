@@ -23,6 +23,12 @@ public class ThreadLocalDemo {
 	 *
 	 * 链接：https://www.jianshu.com/p/1a5d288bdaee
 	 *
+	 * 阿里代码规约：
+	 ** 【参考】ThreadLocal 对象使用 static 修饰，ThreadLocal 无法解决共享对象的更新问题。
+	 ** 说明：这个变量是针对一个线程内所有操作共享的，所以设置为静态变量，所有此类实例共享此静态变量，
+	 ** 也就是说在类第一次被使用时装载，只分配一块存储空间，所有此类的对象(只要是这个线程内定义的)都可
+	 ** 以操控这个变量。
+	 *
 	 * */
 
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
