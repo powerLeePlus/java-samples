@@ -12,6 +12,7 @@ import com.lwq.demo.TestApplication;
  * @date 2021/1/11 0011
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+// 获取启动类，加载配置，确定装载 Spring 程序的装载方法，它会去寻找 主配置启动类（被 @SpringBootApplication 注解的）
 @SpringBootTest(classes = TestApplication.class)
 public class SpringbootTest {
 
