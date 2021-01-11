@@ -1,5 +1,6 @@
 package pattern.decorator;
 
+
 import pattern.Sharp;
 
 /**
