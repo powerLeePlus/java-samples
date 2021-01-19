@@ -120,4 +120,21 @@ public class MockitoTest {
 		Assert.assertTrue("test".equals(argumentCaptor.getValue()));
 
 	}
+
+	/**
+	 * mock参数
+	 */
+	@Test
+	public void testMockArgument() {
+		List mock = Mockito.mock(List.class);
+		// Mockito.when(mock.add(true)).thenReturn(true);
+		// Assert.assertTrue("预期不符", mock.add(false));
+
+		// Mockito.any() 表示调用add()方法时，任何参数都mock
+		Mockito.when(mock.add(Mockito.any())).thenReturn(true);
+		Assert.assertTrue(mock.add(""));
+		Assert.assertTrue(mock.add(10L));
+		Assert.assertTrue(mock.add(false));
+
+	}
 }
