@@ -11,6 +11,7 @@
 
     <modules>
         <module>decorator</module>
+        <module>responsibility-chain</module>
     </modules>
 
     <properties>
