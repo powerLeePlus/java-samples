@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>pattern.chain.ConsoleLogger</OriginalElement>
+  <nodes>
+    <node x="172.00000000000003" y="171.0">pattern.chain.FileLogger</node>
+    <node x="339.0" y="171.0">pattern.chain.ErrorLogger</node>
+    <node x="150.75" y="286.0">pattern.chain.ChainPatternDemo</node>
+    <node x="218.37500000000003" y="0.0">pattern.chain.AbstractLogger</node>
+    <node x="0.0" y="171.0">pattern.chain.ConsoleLogger</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pattern.chain.ErrorLogger" target="pattern.chain.AbstractLogger">
+      <point x="0.0" y="-27.5" />
+      <point x="412.5" y="151.0" />
+      <point x="350.875" y="151.0" />
+      <point x="26.5" y="60.5" />
+    </edge>
+    <edge source="pattern.chain.ConsoleLogger" target="pattern.chain.AbstractLogger">
+      <point x="0.0" y="-27.5" />
+      <point x="76.0" y="141.0" />
+      <point x="244.87500000000003" y="141.0" />
+      <point x="-79.5" y="60.5" />
+    </edge>
+    <edge source="pattern.chain.FileLogger" target="pattern.chain.AbstractLogger">
+      <point x="-2.8421709430404007E-14" y="-27.5" />
+      <point x="245.5" y="151.0" />
+      <point x="297.875" y="151.0" />
+      <point x="-26.5" y="60.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="243.0" y="182.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
