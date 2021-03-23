@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>pattern.observer.ObserverPatternDemo</OriginalElement>
+  <nodes>
+    <node x="315.25000000000006" y="168.0">pattern.observer.Subject</node>
+    <node x="292.7702380952381" y="576.0">pattern.observer.ObserverPatternDemo</node>
+    <node x="212.00000000000006" y="408.0">pattern.observer.OctalObserver</node>
+    <node x="281.25000000000006" y="0.0">pattern.observer.Observer</node>
+    <node x="446.52023809523814" y="408.0">pattern.observer.HexObserver</node>
+    <node x="0.0" y="408.0">pattern.observer.BinaryObserver</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pattern.observer.HexObserver" target="pattern.observer.Observer">
+      <point x="0.0" y="-49.0" />
+      <point x="535.5202380952381" y="388.0" />
+      <point x="548.3809523809524" y="388.0" />
+      <point x="548.3809523809524" y="128.0" />
+      <point x="393.75000000000006" y="128.0" />
+      <point x="45.0" y="49.0" />
+    </edge>
+    <edge source="pattern.observer.BinaryObserver" target="pattern.observer.Observer">
+      <point x="-64.0" y="-49.0" />
+      <point x="32.0" y="388.0" />
+      <point x="62.0" y="388.0" />
+      <point x="62.0" y="118.0" />
+      <point x="288.75000000000006" y="118.0" />
+      <point x="-60.0" y="49.0" />
+    </edge>
+    <edge source="pattern.observer.OctalObserver" target="pattern.observer.Observer">
+      <point x="0.0" y="-49.0" />
+      <point x="305.00000000000006" y="378.0" />
+      <point x="283.00000000000006" y="378.0" />
+      <point x="283.00000000000006" y="148.0" />
+      <point x="333.75000000000006" y="148.0" />
+      <point x="-15.0" y="49.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="312.5" y="315.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

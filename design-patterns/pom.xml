@@ -12,6 +12,7 @@
     <modules>
         <module>decorator</module>
         <module>responsibility-chain</module>
+        <module>observer</module>
     </modules>
 
     <properties>
