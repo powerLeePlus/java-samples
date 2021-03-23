@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>pattern.strategy.OperationMultiply</OriginalElement>
+  <nodes>
+    <node x="204.0" y="148.0">pattern.strategy.OperationSubtract</node>
+    <node x="408.0" y="148.0">pattern.strategy.OperationAdd</node>
+    <node x="400.0" y="296.0">pattern.strategy.StrategyPatternDemo</node>
+    <node x="0.0" y="148.0">pattern.strategy.OperationMultiply</node>
+    <node x="408.0" y="0.0">pattern.strategy.Strategy</node>
+    <node x="612.0" y="105.0">pattern.strategy.Context</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pattern.strategy.OperationAdd" target="pattern.strategy.Strategy">
+      <point x="0.0" y="-27.5" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="pattern.strategy.OperationMultiply" target="pattern.strategy.Strategy">
+      <point x="0.0" y="-27.5" />
+      <point x="92.0" y="75.0" />
+      <point x="426.4" y="75.0" />
+      <point x="-73.6" y="27.5" />
+    </edge>
+    <edge source="pattern.strategy.OperationSubtract" target="pattern.strategy.Strategy">
+      <point x="0.0" y="-27.5" />
+      <point x="296.0" y="85.0" />
+      <point x="463.2" y="85.0" />
+      <point x="-36.80000000000001" y="27.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="406.5" y="175.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

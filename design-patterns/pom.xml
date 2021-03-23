@@ -13,6 +13,7 @@
         <module>decorator</module>
         <module>responsibility-chain</module>
         <module>observer</module>
+        <module>strategy</module>
     </modules>
 
     <properties>
