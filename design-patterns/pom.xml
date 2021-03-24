@@ -16,6 +16,7 @@
         <module>strategy</module>
         <module>factory</module>
         <module>abstract-factory</module>
+        <module>adapter</module>
     </modules>
 
     <properties>
