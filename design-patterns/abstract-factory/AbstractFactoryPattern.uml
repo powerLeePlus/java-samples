@@ -19,30 +19,6 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="pattern.factory.abstract_factory.products1.Circle" target="pattern.factory.abstract_factory.products1.Shape">
-      <point x="0.0" y="-27.5" />
-      <point x="676.7439331501832" y="115.0" />
-      <point x="796.8384844322346" y="115.0" />
-      <point x="-16.28571428571422" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.abstract_factory.ColorFactory" target="pattern.factory.abstract_factory.AbstractFactory">
-      <point x="77.08333333333331" y="-39.0" />
-      <point x="324.5833333333333" y="253.0" />
-      <point x="423.3897664835165" y="253.0" />
-      <point x="-69.375" y="39.0" />
-    </edge>
-    <edge source="pattern.factory.abstract_factory.products2.Red" target="pattern.factory.abstract_factory.products2.Color">
-      <point x="0.0" y="-27.5" />
-      <point x="306.5" y="115.0" />
-      <point x="210.3116987179488" y="115.0" />
-      <point x="14.0" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.abstract_factory.ShapeFactory" target="pattern.factory.abstract_factory.AbstractFactory">
-      <point x="-77.08333333333326" y="-39.0" />
-      <point x="660.3750000000001" y="263.0" />
-      <point x="562.1397664835165" y="263.0" />
-      <point x="69.375" y="39.0" />
-    </edge>
     <edge source="pattern.factory.abstract_factory.products2.Green" target="pattern.factory.abstract_factory.products2.Color">
       <point x="0.0" y="-27.5" />
       <point x="188.5" y="115.0" />
@@ -55,11 +31,23 @@
       <point x="813.1241987179488" y="115.0" />
       <point x="0.0" y="27.5" />
     </edge>
+    <edge source="pattern.factory.abstract_factory.products2.Red" target="pattern.factory.abstract_factory.products2.Color">
+      <point x="0.0" y="-27.5" />
+      <point x="306.5" y="115.0" />
+      <point x="210.3116987179488" y="115.0" />
+      <point x="14.0" y="27.5" />
+    </edge>
     <edge source="pattern.factory.abstract_factory.products1.Rectangle" target="pattern.factory.abstract_factory.products1.Shape">
       <point x="0.0" y="-27.5" />
       <point x="948.7439331501832" y="105.0" />
       <point x="845.6956272893774" y="105.0" />
       <point x="32.571428571428555" y="27.5" />
+    </edge>
+    <edge source="pattern.factory.abstract_factory.products1.Circle" target="pattern.factory.abstract_factory.products1.Shape">
+      <point x="0.0" y="-27.5" />
+      <point x="676.7439331501832" y="115.0" />
+      <point x="796.8384844322346" y="115.0" />
+      <point x="-16.28571428571422" y="27.5" />
     </edge>
     <edge source="pattern.factory.abstract_factory.products2.Blue" target="pattern.factory.abstract_factory.products2.Color">
       <point x="0.0" y="-27.5" />
@@ -67,9 +55,23 @@
       <point x="182.3116987179488" y="115.0" />
       <point x="-14.0" y="27.5" />
     </edge>
+    <edge source="pattern.factory.abstract_factory.ColorFactory" target="pattern.factory.abstract_factory.AbstractFactory">
+      <point x="77.08333333333331" y="-39.0" />
+      <point x="324.5833333333333" y="253.0" />
+      <point x="423.3897664835165" y="253.0" />
+      <point x="-69.375" y="39.0" />
+    </edge>
+    <edge source="pattern.factory.abstract_factory.ShapeFactory" target="pattern.factory.abstract_factory.AbstractFactory">
+      <point x="-77.08333333333326" y="-39.0" />
+      <point x="660.3750000000001" y="263.0" />
+      <point x="562.1397664835165" y="263.0" />
+      <point x="69.375" y="39.0" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9387755102040817" x="515.0" y="308.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="515.0" y="308.5" />
+  <SelectedNodes>
+    <node>pattern.factory.abstract_factory.ShapeFactory</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

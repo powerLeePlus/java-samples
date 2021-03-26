@@ -13,18 +13,6 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="pattern.adapater.AudioPlayer" target="pattern.adapater.Mp4Player">
-      <point x="46.60000000000002" y="-49.0" />
-      <point x="324.39230769230767" y="299.0" />
-      <point x="461.6538461538462" y="299.0" />
-      <point x="-42.5" y="39.0" />
-    </edge>
-    <edge source="pattern.adapater.AdapaterPatternDemo" target="pattern.adapater.Mp4Player">
-      <point x="40.0" y="-62.0" />
-      <point x="348.15384615384613" y="447.0" />
-      <point x="546.6538461538462" y="447.0" />
-      <point x="42.5" y="39.0" />
-    </edge>
     <edge source="pattern.adapater.AudioPlayer" target="pattern.adapater.MediaPlayer">
       <point x="-93.19999999999996" y="-49.0" />
       <point x="184.59230769230768" y="299.0" />
@@ -33,31 +21,11 @@
       <point x="92.0" y="108.0" />
       <point x="0.0" y="27.5" />
     </edge>
-    <edge source="pattern.adapater.AdapaterPatternDemo" target="pattern.adapater.MediaPlayer">
-      <point x="-80.0" y="-62.0" />
-      <point x="228.15384615384613" y="457.0" />
-      <point x="57.4871794871795" y="457.0" />
-      <point x="57.4871794871795" y="108.0" />
-      <point x="30.666666666666686" y="108.0" />
-      <point x="-61.333333333333314" y="27.5" />
-    </edge>
     <edge source="pattern.adapater.VlcPlayer" target="pattern.adapater.AdvancedMediaPlayer">
       <point x="0.0" y="-39.0" />
       <point x="694.1538461538462" y="108.0" />
       <point x="511.08846153846156" y="108.0" />
       <point x="75.0" y="39.0" />
-    </edge>
-    <edge source="pattern.adapater.AudioPlayer" target="pattern.adapater.VlcPlayer">
-      <point x="93.19999999999999" y="-49.0" />
-      <point x="370.99230769230763" y="309.0" />
-      <point x="651.6538461538462" y="309.0" />
-      <point x="-42.5" y="39.0" />
-    </edge>
-    <edge source="pattern.adapater.AdapaterPatternDemo" target="pattern.adapater.VlcPlayer">
-      <point x="80.0" y="-62.0" />
-      <point x="388.15384615384613" y="457.0" />
-      <point x="736.6538461538462" y="457.0" />
-      <point x="42.5" y="39.0" />
     </edge>
     <edge source="pattern.adapater.Mp4Player" target="pattern.adapater.AdvancedMediaPlayer">
       <point x="0.0" y="-39.0" />
@@ -65,46 +33,20 @@
       <point x="461.08846153846156" y="108.0" />
       <point x="25.0" y="39.0" />
     </edge>
-    <edge source="pattern.adapater.AdapaterPatternDemo" target="pattern.adapater.AudioPlayer">
-      <point x="0.0" y="-62.0" />
-      <point x="308.15384615384613" y="457.0" />
-      <point x="277.79230769230765" y="457.0" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="pattern.adapater.MediaAdapater" target="pattern.adapater.AdvancedMediaPlayer">
-      <point x="2.8421709430404007E-14" y="-70.5" />
-      <point x="244.65384615384616" y="98.0" />
-      <point x="361.08846153846156" y="98.0" />
-      <point x="-75.0" y="39.0" />
-    </edge>
-    <edge source="pattern.adapater.AdapaterPatternDemo" target="pattern.adapater.MediaAdapater">
-      <point x="-40.0" y="-62.0" />
-      <point x="268.15384615384613" y="447.0" />
-      <point x="150.79230769230765" y="447.0" />
-      <point x="150.79230769230765" y="309.0" />
-      <point x="141.65384615384613" y="309.0" />
-      <point x="-103.0" y="70.5" />
-    </edge>
     <edge source="pattern.adapater.MediaAdapater" target="pattern.adapater.MediaPlayer">
       <point x="-102.99999999999997" y="-70.5" />
       <point x="141.65384615384616" y="108.0" />
       <point x="153.33333333333334" y="108.0" />
       <point x="61.33333333333334" y="27.5" />
     </edge>
-    <edge source="pattern.adapater.AudioPlayer" target="pattern.adapater.MediaAdapater">
-      <point x="-46.599999999999966" y="-49.0" />
-      <point x="231.19230769230768" y="309.0" />
-      <point x="244.65384615384613" y="309.0" />
-      <point x="0.0" y="70.5" />
-    </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="390.0" y="300.5" />
   <SelectedNodes />
   <Categories>
-    <Category>Inner Classes</Category>
     <Category>Fields</Category>
     <Category>Constructors</Category>
     <Category>Methods</Category>
+    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
