@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>pattern.template.Football</OriginalElement>
+  <nodes>
+    <node x="114.4" y="325.0">pattern.template.TemplatePatternDemo</node>
+    <node x="0.0" y="174.0">pattern.template.Cricket</node>
+    <node x="154.0" y="174.0">pattern.template.Football</node>
+    <node x="154.0" y="0.0">pattern.template.Game</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pattern.template.TemplatePatternDemo" target="pattern.template.Football">
+      <point x="0.0" y="-27.5" />
+      <point x="214.4" y="300.0" />
+      <point x="221.0" y="300.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="pattern.template.TemplatePatternDemo" target="pattern.template.Cricket">
+      <point x="-66.66666666666669" y="-27.5" />
+      <point x="147.73333333333332" y="300.0" />
+      <point x="67.0" y="300.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="pattern.template.TemplatePatternDemo" target="pattern.template.Game">
+      <point x="66.66666666666669" y="-27.5" />
+      <point x="281.0666666666667" y="300.0" />
+      <point x="298.5" y="300.0" />
+      <point x="298.5" y="149.0" />
+      <point x="265.66666666666663" y="149.0" />
+      <point x="44.66666666666663" y="62.0" />
+    </edge>
+    <edge source="pattern.template.Cricket" target="pattern.template.Game">
+      <point x="0.0" y="-50.5" />
+      <point x="67.0" y="149.0" />
+      <point x="176.33333333333337" y="149.0" />
+      <point x="-44.66666666666666" y="62.0" />
+    </edge>
+    <edge source="pattern.template.Football" target="pattern.template.Game">
+      <point x="0.0" y="-50.5" />
+      <point x="0.0" y="62.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="157.5" y="190.0" />
+  <SelectedNodes>
+    <node>pattern.template.TemplatePatternDemo</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

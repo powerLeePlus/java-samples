@@ -17,6 +17,7 @@
         <module>factory</module>
         <module>abstract-factory</module>
         <module>adapter</module>
+	    <module>template</module>
     </modules>
 
     <properties>
