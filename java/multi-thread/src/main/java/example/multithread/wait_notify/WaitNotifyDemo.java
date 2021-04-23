@@ -96,7 +96,7 @@ public class WaitNotifyDemo {
 	public static void main(String[] args) throws InterruptedException {
 		// test1();
 		// test2();
-		// demo1();
-		demo2();
+		demo1();
+		// demo2();
 	}
 }

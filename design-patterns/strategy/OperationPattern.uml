@@ -3,9 +3,9 @@
   <ID>JAVA</ID>
   <OriginalElement>pattern.strategy.OperationMultiply</OriginalElement>
   <nodes>
-    <node x="0.0" y="105.0">pattern.strategy.OperationAdd</node>
-    <node x="204.0" y="105.0">pattern.strategy.OperationSubtract</node>
-    <node x="408.0" y="105.0">pattern.strategy.OperationMultiply</node>
+    <node x="408.0" y="105.0">pattern.strategy.OperationAdd</node>
+    <node x="0.0" y="105.0">pattern.strategy.OperationSubtract</node>
+    <node x="204.0" y="105.0">pattern.strategy.OperationMultiply</node>
     <node x="246.0" y="205.0">pattern.strategy.StrategyPatternDemo</node>
     <node x="0.0" y="205.0">pattern.strategy.Context</node>
     <node x="204.0" y="0.0">pattern.strategy.Strategy</node>
@@ -14,23 +14,25 @@
   <edges>
     <edge source="pattern.strategy.OperationAdd" target="pattern.strategy.Strategy">
       <point x="0.0" y="-27.5" />
-      <point x="92.0" y="80.0" />
-      <point x="234.66666666666666" y="80.0" />
-      <point x="-61.33333333333334" y="27.5" />
-    </edge>
-    <edge source="pattern.strategy.OperationMultiply" target="pattern.strategy.Strategy">
-      <point x="0.0" y="-27.5" />
       <point x="500.0" y="80.0" />
       <point x="357.33333333333337" y="80.0" />
       <point x="61.33333333333337" y="27.5" />
     </edge>
-    <edge source="pattern.strategy.OperationSubtract" target="pattern.strategy.Strategy">
+    <edge source="pattern.strategy.OperationMultiply" target="pattern.strategy.Strategy">
       <point x="0.0" y="-27.5" />
       <point x="0.0" y="27.5" />
     </edge>
+    <edge source="pattern.strategy.OperationSubtract" target="pattern.strategy.Strategy">
+      <point x="0.0" y="-27.5" />
+      <point x="92.0" y="80.0" />
+      <point x="234.66666666666666" y="80.0" />
+      <point x="-61.33333333333334" y="27.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="406.5" y="175.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="296.0" y="173.0" />
+  <SelectedNodes>
+    <node>pattern.strategy.Context</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
