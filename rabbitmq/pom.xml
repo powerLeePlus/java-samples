@@ -12,6 +12,7 @@
 		<module>hello-rabbitmq</module>
 		<module>spring-rabbitmq</module>
 		<module>springboot-rabbitmq</module>
+		<module>springboot-rabbitmq-delayqueue</module>
 	</modules>
 
 	<properties>
