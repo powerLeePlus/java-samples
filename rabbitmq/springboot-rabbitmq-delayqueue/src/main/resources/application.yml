@@ -7,18 +7,12 @@ spring:
 
   # 连接rabbitmq
   rabbitmq:
-    addresses: 172.16.20.220
+    host: 172.16.20.220
     port: 5672
     username: guest
     password: guest
     virtual-host: /myvhost
-    connection-timeout: 15000ms
 
-    # 开启confirm模式
-    #publisher-confirms: true # 弃用了，用 publisher-confirm-type 代替
-    # publisher-confirm-type: correlated
-    # 开启return模式
-    # publisher-returns: true
     template:
       mandatory: true
 
