@@ -1,4 +1,4 @@
-package pattern.strategy;
+package pattern.strategy.v2;
 
 /**
  * 持有策略实例并执行策略的方法
@@ -7,13 +7,17 @@ package pattern.strategy;
  */
 public class Context {
 
+	public static final String STRATEGY_TYPE_ADD = "ADD";
+	public static final String STRATEGY_TYPE_MULTIPLY = "MULTIPLY";
+	public static final String STRATEGY_TYPE_SUBTRACT = "SUBTRACT";
+
 	/** 2
 	 * 持有策略实例
 	 */
 	private Strategy strategy;
 
-	public Context(Strategy strategy) {
-		this.strategy = strategy;
+	public Context(String strategyType) {
+		this.strategy = Strategy.instants.get(strategyType);
 	}
 
 	/** 3

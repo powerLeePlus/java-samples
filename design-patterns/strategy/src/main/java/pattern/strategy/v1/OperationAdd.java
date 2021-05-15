@@ -1,4 +1,4 @@
-package pattern.strategy;
+package pattern.strategy.v1;
 
 /**
  * 策略一

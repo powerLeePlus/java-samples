@@ -5,8 +5,8 @@
   <nodes>
     <node x="408.0" y="105.0">pattern.strategy.OperationAdd</node>
     <node x="0.0" y="105.0">pattern.strategy.OperationSubtract</node>
-    <node x="204.0" y="105.0">pattern.strategy.OperationMultiply</node>
     <node x="246.0" y="205.0">pattern.strategy.StrategyPatternDemo</node>
+    <node x="204.0" y="105.0">pattern.strategy.OperationMultiply</node>
     <node x="0.0" y="205.0">pattern.strategy.Context</node>
     <node x="204.0" y="0.0">pattern.strategy.Strategy</node>
   </nodes>
