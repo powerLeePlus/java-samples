@@ -13,4 +13,8 @@
 	<artifactId>nacos-discovery</artifactId>
 	<packaging>pom</packaging>
 
+	<modules>
+		<module>nacos-discovery-provider</module>
+		<module>nacos-discovery-consumer</module>
+	</modules>
 </project>
