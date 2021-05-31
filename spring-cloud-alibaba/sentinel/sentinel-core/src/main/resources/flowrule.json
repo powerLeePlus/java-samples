@@ -1,0 +1,34 @@
+[
+  {
+    "resource": "/hello",
+    "controlBehavior": 0,
+    "count": 1,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  },
+  {
+    "resource": "/hello2",
+    "controlBehavior": 0,
+    "count": 0,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  },
+  {
+    "resource": "GET:http://www.taobao.com",
+    "controlBehavior": 0,
+    "count": 0,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  },
+  {
+    "resource": "GET:http://localhost:18083/test",
+    "controlBehavior": 0,
+    "count": 1,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  }
+]

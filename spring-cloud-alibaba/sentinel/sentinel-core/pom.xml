@@ -25,6 +25,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+		<!--规则配置数据源用nacos的依赖-->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-nacos</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+	<FlowRule>
+		<resource>resource</resource>
+		<controlBehavior>0</controlBehavior>
+		<count>1</count>
+		<grade>1</grade>
+		<limitApp>default</limitApp>
+		<strategy>0</strategy>
+	</FlowRule>
+	<FlowRule>
+		<resource>/test</resource>
+		<controlBehavior>0</controlBehavior>
+		<count>1</count>
+		<grade>1</grade>
+		<limitApp>default</limitApp>
+		<strategy>0</strategy>
+	</FlowRule>
+	<FlowRule>
+		<resource>hello2</resource>
+		<controlBehavior>0</controlBehavior>
+		<count>1</count>
+		<grade>1</grade>
+		<limitApp>default</limitApp>
+		<strategy>0</strategy>
+	</FlowRule>
+</Rules>
