@@ -1,0 +1,3 @@
+nacos与spring cloud gateway整合
+gateway用以替换zuul，因为gateway是基于reactor方式的，抛弃了性能差的servlet容器方式
+gateway用于路由，鉴权，限流等

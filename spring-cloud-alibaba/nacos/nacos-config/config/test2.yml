@@ -1,0 +1,23 @@
+#普通
+user:
+  name: lwq
+  age: 30
+  hr: 哈哈
+
+#map
+  map:
+    1: mv1
+    2: true
+    3: mv3
+
+#list
+  users:
+    - name: zhangsan
+      hr: 好人
+      avg: 25
+    - name: lisi
+      hr: 牛
+      avg: 23
+    - name: lily
+      hr: 洋
+      avg: 40
