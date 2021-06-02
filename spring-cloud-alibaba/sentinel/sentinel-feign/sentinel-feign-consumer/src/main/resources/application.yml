@@ -1,0 +1,37 @@
+server:
+  port: 18084
+
+spring:
+  application:
+    name: sentinel-feign-consumer
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.20.220:8848
+
+    sentinel:
+      transport:
+        dashboard: 172.16.20.220:8080
+        clientIp: 172.16.20.4
+      datasource:
+        ds1:
+          file:
+            file: "classpath: flowrule.json"
+#            server-addr: 172.16.20.220:8848
+#            data-id: flowrule2.json
+            rule-type: flow
+            data-type: json
+
+feign:
+  sentinel:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

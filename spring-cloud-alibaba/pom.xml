@@ -12,6 +12,7 @@
 		<module>nacos/nacos-gateway</module>
 		<module>sentinel/sentinel-core</module>
 		<module>sentinel/sentinel-spring-cloud-gateway</module>
+		<module>sentinel/sentinel-feign</module>
 	</modules>
 	<name>spring-cloud-alibaba</name>
 	<packaging>pom</packaging>

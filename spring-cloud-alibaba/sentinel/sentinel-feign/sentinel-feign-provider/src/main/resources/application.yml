@@ -1,0 +1,21 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: sentinel-feign-provider
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.20.220:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
