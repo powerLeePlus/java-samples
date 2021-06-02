@@ -19,13 +19,14 @@ import reactor.core.publisher.Mono;
 public class MySCGConfiguration {
 
 	/**
-	 * 自定义Spring cloud gateway Sentinel Block 异常处理
+	 * 自定义Reactive handler（如webflux） for Spring cloud gateway Sentinel Block 异常处理
 	 */
 	@Bean
 	public BlockRequestHandler blockRequestHandler() {
 		return new BlockRequestHandler() {
 			@Override
-			public Mono<ServerResponse> handleRequest(ServerWebExchange serverWebExchange, Throwable throwable) {
+			public Mono<ServerResponse> handleRequest(ServerWebExchange exchange,
+			                                          Throwable t) {
 				return ServerResponse.status(444).contentType(MediaType.APPLICATION_JSON)
 						.body(fromValue("SCS Sentinel block"));
 			}

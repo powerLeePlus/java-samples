@@ -1,9 +1,8 @@
 server:
-  port: 18083
+  port: 18084
 spring:
   application:
     name: sentinel-spring-cloud-gateway
-
   cloud:
     gateway:
       enabled: true
@@ -11,6 +10,7 @@ spring:
         locator:
           lower-case-service-id: true
       routes:
+        # Add your routes here.
         - id: aliyun_route
           uri: https://www.aliyun.com/
           predicates:
@@ -21,6 +21,7 @@ spring:
             - Path=/httpbin/**
           filters:
             - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+
     sentinel:
       datasource.ds2.file:
         file: "classpath: gateway.json"
@@ -36,17 +37,9 @@ spring:
       scg:
         fallback:
           mode: response
-          response-status: 415
-          response-body: fallback info
-        order: -100
+          response-status: 444
+          response-body: SCS Sentinel fallback
+        order: 2147483647
+      eager: true
 
-
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+management.endpoints.web.exposure.include: "*"
