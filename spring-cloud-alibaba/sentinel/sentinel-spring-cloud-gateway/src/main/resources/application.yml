@@ -40,6 +40,6 @@ spring:
           response-status: 444
           response-body: SCS Sentinel fallback
         order: 2147483647
-      eager: true
+#      eager: true
 
 management.endpoints.web.exposure.include: "*"

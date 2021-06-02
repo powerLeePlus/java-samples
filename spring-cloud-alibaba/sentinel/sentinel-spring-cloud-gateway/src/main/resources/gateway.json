@@ -1,6 +1,7 @@
 [
   {
     "resource": "some_customized_api",
+    "resourceMode": 1,
     "count": 1
   },
   {
