@@ -16,10 +16,12 @@ spring:
         clientIp: 172.16.20.4
       datasource:
         ds1:
-          file:
-            file: "classpath: flowrule.json"
-#            server-addr: 172.16.20.220:8848
-#            data-id: flowrule2.json
+          nacos:
+#            file: "classpath: flowrule.json"
+            username: nacos
+            password: nacos
+            server-addr: 172.16.20.220:8848
+            dataId: flowrule2.json
             rule-type: flow
             data-type: json
 
