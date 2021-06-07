@@ -14,7 +14,6 @@
 		<module>sentinel/sentinel-spring-cloud-gateway</module>
 		<module>sentinel/sentinel-feign</module>
 		<module>seata</module>
-		<module>seata/storage-service</module>
 	</modules>
 	<name>spring-cloud-alibaba</name>
 	<packaging>pom</packaging>

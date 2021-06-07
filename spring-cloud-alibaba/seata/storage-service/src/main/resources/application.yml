@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.20.220:8848
+        username: nacos
+        password: nacos
+    alibaba:
+      seata:
+        tx-service-group: business-service
+
+  datasource:
+    name: storageDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seata?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 2
+
+
+server:
+  port: 18082
+
+
+seata:
+  service:
+    vgroup-mapping:
+      account-service: default
+    grouplist:
+      default: 127.0.0.1:8091
+    disable-global-transaction: false
+#  enabled: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+## if use registry center
+#seata.registry.type=nacos
+#seata.registry.nacos.cluster=default
+#seata.registry.nacos.server-addr=localhost
+#
+## if use config center
+#seata.config.type=apollo
+#seata.config.apollo.apollo-meta=http://192.168.1.204:8801
+#seata.config.apollo.app-id=seata-server
