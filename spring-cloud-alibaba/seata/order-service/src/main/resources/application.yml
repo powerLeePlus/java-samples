@@ -29,9 +29,9 @@ server:
 seata:
   service:
     vgroup-mapping:
-      account-service: default
+      business-service: default
     grouplist:
-      default: 127.0.0.1:8091
+      default: 172.16.20.220:8091
     disable-global-transaction: false
 #  enabled: true
 

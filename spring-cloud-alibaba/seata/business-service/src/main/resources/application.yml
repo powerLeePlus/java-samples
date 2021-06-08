@@ -1,39 +1,22 @@
 spring:
   application:
-    name: account-service
+    name: business-service
+
   cloud:
     nacos:
       discovery:
         server-addr: 172.16.20.220:8848
-        username: nacos
-        password: nacos
     alibaba:
       seata:
-        tx-service-group: account-service
-
-  datasource:
-    name: accountDataSource
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/seata?useSSL=false&serverTimezone=UTC
-    username: root
-    password: root
-    hikari:
-      minimum-idle: 2
-
+        tx-service-group: business-service
+    loadbalancer:
+      ribbon:
+        enabled: true
 
 server:
-  port: 18084
+  port: 18081
 
 
-seata:
-  service:
-    vgroup-mapping:
-      account-service: default
-    grouplist:
-      default: 127.0.0.1:8091
-    disable-global-transaction: false
-#  enabled: true
 
 management:
   endpoint:
@@ -43,6 +26,30 @@ management:
     web:
       exposure:
         include: "*"
+
+# The following configuration can be omitted.
+feign:
+#  hystrix:
+#    enabled: true
+#  sentinel:
+#    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+logging:
+  level:
+    io.seata: debug
+seata:
+  enabled: true
+  service:
+    vgroup-mapping:
+      business-service: default
+    grouplist:
+      default: 172.16.20.220:8091
+    disable-global-transaction: false
 
 ## if use registry center
 #seata.registry.type=nacos
