@@ -107,11 +107,13 @@ public class HomeController {
 	@GetMapping(value = "/seata/feign", produces = "application/json")
 	public String feign() {
 		String result = storageService.echo(COMMODITY_CODE, ORDER_COUNT);
+		System.out.println("invoke storage service result: " + result);
 		if (!SUCCESS.equals(result)) {
 			throw new RuntimeException();
 		}
 
 		result = orderService.order(USER_ID, COMMODITY_CODE, ORDER_COUNT);
+		System.out.println("invoke order service result: " + result);
 		if (!SUCCESS.equals(result)) {
 			throw new RuntimeException();
 		}

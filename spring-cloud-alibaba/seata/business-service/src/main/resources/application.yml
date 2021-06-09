@@ -12,6 +12,16 @@ spring:
     loadbalancer:
       ribbon:
         enabled: true
+    sentinel:
+      transport:
+        dashboard: 172.16.20.220:8080
+        clientIp: 172.16.20.4
+      datasource:
+        ds1:
+          file:
+            file: "classpath: flowrule.json"
+            data-type: json
+            rule-type: flow
 
 server:
   port: 18081
@@ -31,13 +41,14 @@ management:
 feign:
 #  hystrix:
 #    enabled: true
-#  sentinel:
-#    enabled: true
+  sentinel:
+    enabled: true
   client:
     config:
       default:
         connectTimeout: 10000
         readTimeout: 10000
+
 
 logging:
   level:
