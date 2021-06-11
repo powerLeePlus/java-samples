@@ -16,6 +16,7 @@
 		<module>seata</module>
 		<module>rocketmq/rocketmq-produce</module>
 		<module>rocketmq/rocketmq-consum</module>
+		<module>dubbo</module>
 	</modules>
 	<name>spring-cloud-alibaba</name>
 	<packaging>pom</packaging>
