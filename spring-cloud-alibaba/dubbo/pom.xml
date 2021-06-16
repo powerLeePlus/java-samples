@@ -13,6 +13,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>dubbo-sample-api</module>
+		<module>dubbo-server</module>
+		<module>dubbo-client</module>
 	</modules>
 
 

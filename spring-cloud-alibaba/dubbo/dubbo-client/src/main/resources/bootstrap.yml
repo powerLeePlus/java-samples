@@ -1,0 +1,23 @@
+dubbo:
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
+  cloud:
+    # 用于服务消费方订阅服务提供方的应用名称的列表，若需订阅多应用，使用 "," 分割。 不推荐使用默认值为 "*"，它将订阅所有应用。
+    subscribed-services: dubbo-server
+  protocols:
+    dubbo:
+      port: -1
+spring:
+  application:
+    # Dubbo 应用名称
+    name: dubbo-client
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.20.220:8848
+#      username: nacos
+#      password: nacos
+
