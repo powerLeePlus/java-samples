@@ -15,6 +15,7 @@
 		<module>dubbo-sample-api</module>
 		<module>dubbo-server</module>
 		<module>dubbo-client</module>
+		<module>dubbo-provider</module>
 	</modules>
 
 

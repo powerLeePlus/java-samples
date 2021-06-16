@@ -9,7 +9,7 @@ dubbo:
     port: -1
   # 当前 Dubbo Spring Cloud 实现必须配置 dubbo.registry.address = spring-cloud://localhost，下一个版本将其配置变为可选 （参考 issue #592）， 并且支持传统 Dubbo 协议的支持（参考 issue #588）
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://172.16.20.220
 
 spring:
   application:
