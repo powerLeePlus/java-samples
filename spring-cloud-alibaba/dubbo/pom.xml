@@ -16,6 +16,7 @@
 		<module>dubbo-server</module>
 		<module>dubbo-client</module>
 		<module>dubbo-provider</module>
+		<module>dubbo-provider-web</module>
 	</modules>
 
 
