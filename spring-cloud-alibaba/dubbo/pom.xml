@@ -17,6 +17,7 @@
 		<module>dubbo-client</module>
 		<module>dubbo-provider</module>
 		<module>dubbo-provider-web</module>
+		<module>dubbo-servlet-gateway</module>
 	</modules>
 
 
