@@ -1,12 +1,17 @@
 dubbo:
+#  cloud:
+#    subscribed-services: ${provider.application.name}
   registry:
     #   The Spring Cloud Dubbo's registry extension
-    address: spring-cloud://localhost
+    address: spring-cloud://172.16.20.220
+  protocols:
+    dubbo:
+      port: -1
 #   The traditional Dubbo's registry
 #   address: zookeeper://127.0.0.1:2181
 server:
-  port: 0
+  port: 8081
 
-provider:
-  application:
-    name: dubbo-web-provider
+#provider:
+#  application:
+#    name: dubbo-provider
