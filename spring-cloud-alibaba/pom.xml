@@ -17,6 +17,7 @@
 		<module>rocketmq/rocketmq-produce</module>
 		<module>rocketmq/rocketmq-consum</module>
 		<module>dubbo</module>
+		<module>bus-rocketmq</module>
 	</modules>
 	<name>spring-cloud-alibaba</name>
 	<packaging>pom</packaging>
