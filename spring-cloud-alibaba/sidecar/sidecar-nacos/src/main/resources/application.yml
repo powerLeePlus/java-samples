@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: node-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.16.20.220:8848
+        group: test
+      username: nacos
+      password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
+sidecar:
+  # 异构服务的IP
+  ip: 127.0.0.1
+  # 异构服务的端口
+  port: 8060
+  # 异构微服务的健康检查URL
+  #health-check-url: http://localhost:8060/health.json
