@@ -11,7 +11,7 @@ curl -X POST "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos-config-exam
 
 ##动态刷新配置：
 1. 先启用：
-    - ConfigService增加监听器，如代码中SampleRunner
+    - ConfigService增加监听器，如代码中SampleRunner(有默认不需要手动配置，这里配置是为了演示)
     - 配置：`spring.cloud.nacos.config.shared-configs[0].refresh=true`
 
 2. 再应用：
