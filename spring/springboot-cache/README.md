@@ -45,6 +45,20 @@ spring cache除了可以使用注解操作缓存，还可以直接使用代码�
 ## 五、使用spring EL 表达式配置缓存key
 详见：com.lwq.spring.boot.cache.web.HelloController#getOne
 
-
+## 六、理解
+### 1. cache name 和 key
+@Cacheable注解中，value相当于一个hash的唯一标识，key相当于该hash下的hashkey，方法结果存在该hash下的某个hashkey中，结构如下：
+```
+---hash1
+------hash1-key1
+------hash1-key2
+------hash1-keyn
+---hash2
+------hash2-key1
+------hash2-keyn
+---hashn
+```
+所以，定义好key是关键。不同的返回值key不能相同。key的定义方式：1.key(结合SpEL);2.keyGenerator
+### 2. cache 生效的条件，可以用`condition`和`unless`
 
 
