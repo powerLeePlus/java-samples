@@ -1,6 +1,7 @@
 package demo.lwq.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 排序相关算法
@@ -10,10 +11,14 @@ import java.util.Arrays;
  */
 public class SortDemo {
 
+	private static Random random = new Random();
+
 	public static void main(String[] args) {
 		int[] arr = {2,1,5,3,4,9,7};
 		// bubbleSort(arr);
-		insertSort(arr);
+		// insertSort(arr);
+		fastSort(arr, 0, arr.length - 1);
+		// fastSort2(arr, 0, arr.length - 1);
 		System.out.println(Arrays.toString(arr));
 	}
 
@@ -59,6 +64,81 @@ public class SortDemo {
 			}
 			// 确定位置了，插入
 			arr[index] = ready;
+		}
+	}
+
+	/**
+	 * 快速排序算法
+	 * 思想：选取一个基准值，比它小的都放左边，比它大的都放右边；左边和右边的再分别定一个基准，再重复上述操作，直到基准左右各只有一个元素为止。
+	 * 关键是怎么移动，使基准左边的都比基准小，基准右边的都比基准大。
+	 * 思路：
+	 * 1.用一个临时变量存放基准，存放在临时变量中，指定左右两个指针i,j，最开始i位置和基准重合（这样就可以j替换i，然后i替换j,依次类推......）
+	 * 2.先从右往左找到比基准小的数，j和i位置的值互换
+	 * 3.再从右往左找到比基准大的数，i和j位置的值互换
+	 * 4.重复2,3步骤，直到i和j重合，将基准写入该位置，此时左边的都小于基准值，右边的都大于基准值
+	 * 5.将左右边分别单独选一个基准，重复1,2,3,4步骤。
+	 * 6.直到基准两边各只有一个元素为止，此时就排好序了
+	 */
+	public static void fastSort(int[] arr, int low, int high) {
+		int i = partition(arr, low, high);
+		// 一分为二递归执行上述操作
+		if (low < i - 1) {
+			fastSort(arr, low, i - 1);
+		}
+		if (i < high - 1) {
+			fastSort(arr, i + 1, high);
+		}
+	}
+
+	private static int partition(int[] arr, int low, int high) {
+		int benchmarkIndex = low;
+		int benchmarkValue = arr[benchmarkIndex]; // 基准存到临时变量
+		int i = low; // 左边的指针
+		int j = high; // 右边的指针
+		while (i < j) {
+			// 右边的
+			while (i < j && arr[j] >= benchmarkValue) {
+				j--;
+			}
+			// 右边的大于基准值，继续找，直到找到小于基准值的数
+			if (arr[j] <= benchmarkValue) {
+				// 找到了
+				// int tmp = arr[i];
+				arr[i] = arr[j];
+				// arr[j] = tmp;
+			}
+			// 左边的
+			while (i < j && arr[i] <= benchmarkValue) {
+				i++;
+			}
+			// 左边的小于基准值，继续找，直到找到大于基准值的数
+			if (arr[i] >= benchmarkValue) {
+				// int tmp = arr[j];
+				arr[j] = arr[i];
+				// arr[i] = tmp;
+			}
+		}
+		// i是新的基准位置
+		arr[i] = benchmarkValue;
+		return i;
+	}
+
+	/**
+	 * 随机化快速排序算法：除了随机选取某一个元素（而不是总是选第一个元素），然后默认将选取的元素和第一个元素交换位置。其他和快速排序一样
+	 */
+	public static void fastSort2(int[] arr, int low, int high) {
+		int benchmarkIndex = random.nextInt(high - low) + low; // 随机选择基准
+		// 选定的基准值和第一个元素值交换位置
+		int tmp = arr[low];
+		arr[low] = arr[benchmarkIndex];
+		arr[benchmarkIndex] = tmp;
+		int i = partition(arr, low, high);
+		// 一分为二递归执行上述操作
+		if (low < i - 1) {
+			fastSort2(arr, low, i - 1);
+		}
+		if (i < high - 1) {
+			fastSort2(arr, i + 1, high);
 		}
 	}
 }
