@@ -154,13 +154,71 @@ public class SortDemo {
 		}
 	}
 
+	/**
+	 * 归并排序算法
+	 * 分治(divide-adn-conquer)思想实现的
+	 * 将多个有序序列合并成一个新的有序序列，即把待排序序列分成多个子序列，每个子序列是有序。然后再把有序子序列合并成整体有序序列
+	 * 归并排序是稳定排序，它也是一种十分高效的排序，能利用完全二叉树特性的排序一般性能都不会太差。java中Arrays.sort()采用了一种名为TimSort的排序算法，就是归并排序的优化版本。
+	 * 实现思路：
+	 * 1、将序列拆分成子序列，按层级一层层拆分，直到每个序列只有一个元素为止（以下称最终子序列）
+	 * 2、最终子序列排好序 （以上两步为“分”的过程）
+	 * 3、将每个最终子序列两两一组，合并成一个有序序列（通过某个子序列从前到后，分别与另一个元素从前到后比较，将小的从左到右依次放入一个临时数组，直到所有元素都放到临时数组完毕）
+	 * 4、递归上一级子序列重复第三步操作，直到最上一层位置 （以上两步为“治”的过程）
+	 */
+	public static void mergeSort(int[] arr) {
+		int[] tempArr = new int[arr.length]; // 临时数组
+		sort(arr, 0, arr.length-1, tempArr);
+	}
+
+	private static void sort(int[] arr, int start, int end, int[] tempArr) {
+		if(start < end) {
+			// 拆分的临界index
+			int mid = (start + end) / 2;
+			// 左边的子序列排序
+			sort(arr, start, mid, tempArr);
+			// 右边的子序列排序
+			sort(arr, mid + 1, end, tempArr);
+			// 左右两边的合并
+			merge(arr, start, end, mid, tempArr);
+		}
+	}
+	private static void merge(int[] arr, int start, int end, int mid, int[] tempArr) {
+		int left = start; // 左子序列指针
+		int right = mid + 1; // 右子序列指针
+		int tmpIndex = 0; // 临时序列待填入排好序的元素指针
+		// 左子序列从前往后依次和右子序列比较大小，小的按次放在临时序列中
+		while (left <= mid && right <= end) {
+			if (arr[left] <= arr[right]) {
+				tempArr[tmpIndex++] = arr[left++];
+			} else {
+				tempArr[tmpIndex++] = arr[right++];
+			}
+		}
+		// 最后左子序列或者右子序列存在还没放入临时序列的元素。依次放进去即可(实际上以下两个while体只会执行到一个)
+		while (left <= mid) {
+			tempArr[tmpIndex++] = arr[left++];
+		}
+		while (right <= end) {
+			tempArr[tmpIndex++] = arr[right++];
+		}
+
+		// 原start-end的元素复制回原数组中
+		tmpIndex = 0;
+		while (start <= end) {
+			arr[start++] = tempArr[tmpIndex++];
+		}
+	}
+
+
+
 	public static void main(String[] args) {
 		int[] arr = {2,1,5,3,4,9,7};
 		// bubbleSort(arr);
 		// insertSort(arr);
 		// fastSort(arr, 0, arr.length - 1);
 		// fastSort2(arr, 0, arr.length - 1);
-		shellSort(arr);
+		// shellSort(arr);
+		mergeSort(arr);
 		System.out.println(Arrays.toString(arr));
 		shellSort(arr);
 		System.out.println(Arrays.toString(arr));
