@@ -13,15 +13,6 @@ public class SortDemo {
 
 	private static Random random = new Random();
 
-	public static void main(String[] args) {
-		int[] arr = {2,1,5,3,4,9,7};
-		// bubbleSort(arr);
-		// insertSort(arr);
-		fastSort(arr, 0, arr.length - 1);
-		// fastSort2(arr, 0, arr.length - 1);
-		System.out.println(Arrays.toString(arr));
-	}
-
 	/**
 	 * 冒泡排序算法
 	 * 假设一个序列有N个元素，
@@ -140,5 +131,38 @@ public class SortDemo {
 		if (i < high - 1) {
 			fastSort2(arr, i + 1, high);
 		}
+	}
+	
+	/**
+	 * 希尔排序：是插入排序的优化，比插入排序高效
+	 * 通过按下标的一定增量分组，每组单独使用插入排序；（让较小的值排到前面）
+	 * 接着缩小增量再分组，再对每组单独插入排序...（让较多较小的值排到前面）
+	 * 至增量为1完成插入排序（此时是完整序列进行插入排序，但是只需做微量调整即可）为止。
+	 * 增量可以是length/2，每个分组增量该组length/2
+	 */
+	public static void shellSort(int[] arr) {
+		for (int gap = arr.length/2; gap > 0; gap/=2) {
+			for (int i = gap; i < arr.length; i++) {
+				int j = i;
+				while (j >= gap && arr[j] < arr[j-gap]) {
+					int tmp = arr[j-gap];
+					arr[j-gap] = arr[j];
+					arr[j] = tmp;
+					j-=gap;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		int[] arr = {2,1,5,3,4,9,7};
+		// bubbleSort(arr);
+		// insertSort(arr);
+		// fastSort(arr, 0, arr.length - 1);
+		// fastSort2(arr, 0, arr.length - 1);
+		shellSort(arr);
+		System.out.println(Arrays.toString(arr));
+		shellSort(arr);
+		System.out.println(Arrays.toString(arr));
 	}
 }
