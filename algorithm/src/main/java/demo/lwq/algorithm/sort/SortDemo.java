@@ -1,6 +1,8 @@
 package demo.lwq.algorithm.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -209,7 +211,56 @@ public class SortDemo {
 		}
 	}
 
+	/**
+	 * 桶排序算法
+	 * 采用的分治思想
+	 * 划分多个范围相同的区间，每个子区间自排序，最后合并
+	 * 计数排序是桶排序的扩展算法
+	 * 通过映射函数，将待排序序列的元素映射到各个对应的桶中，对各个桶分别排序(这里的排序算法是可选的)，最后将非空桶中元素依次放回原序列，完成排序
+	 * 1、计算范围（最大值，最小值）
+	 * 2、计算桶的数量
+	 * 3、将元素放到各自桶中
+	 * 4、对每个桶排序
+	 * 5、依次将桶中元素复制回原序列
+	 *
+	 * 桶排序需要尽量保证元素分散均匀，否则当所有数据集中在同一个桶中时，桶排序失效
+	 */
+	public static void bucketSort(int[] arr) {
+		// 计算范围
+		int max = arr[0];
+		int min = max;
+		for (int i = 1; i < arr.length; i++) {
+			max = Math.max(max, arr[i]);
+			min = Math.min(min, arr[i]);
+		}
 
+		// 计算桶的数量
+		int bucketNum = (max - min)/arr.length + 1;
+		ArrayList<ArrayList<Integer>> bucketArr = new ArrayList<>((int)(bucketNum/0.75F + 1F));
+		for (int i = 0; i < bucketNum; i++) {
+			bucketArr.add(new ArrayList<Integer>());
+		}
+
+		// 将元素放在各自桶中
+		for (int i = 0; i < arr.length; i++) {
+			int num = (arr[i] - min)/arr.length;
+			bucketArr.get(num).add(arr[i]);
+		}
+
+		// 对每个桶排序
+		for (ArrayList<Integer> list : bucketArr) {
+			// 这里排序算法可选
+			Collections.sort(list);
+		}
+
+		// 依次将桶中元素复制回原序列
+		int index = 0;
+		for (ArrayList<Integer> list : bucketArr) {
+			for (Integer integer : list) {
+				arr[index++] = integer;
+			}
+		}
+	}
 
 	public static void main(String[] args) {
 		int[] arr = {2,1,5,3,4,9,7};
@@ -218,9 +269,13 @@ public class SortDemo {
 		// fastSort(arr, 0, arr.length - 1);
 		// fastSort2(arr, 0, arr.length - 1);
 		// shellSort(arr);
-		mergeSort(arr);
+		// mergeSort(arr);
+		bucketSort(arr);
 		System.out.println(Arrays.toString(arr));
-		shellSort(arr);
-		System.out.println(Arrays.toString(arr));
+		// shellSort(arr);
+		int[] arr2 = {222,221,5344,543,412,92,74};
+
+		bucketSort(arr2);
+		System.out.println(Arrays.toString(arr2));
 	}
 }
