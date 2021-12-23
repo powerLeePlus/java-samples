@@ -1,9 +1,6 @@
 package demo.lwq.algorithm.sort;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 排序相关算法
@@ -261,6 +258,58 @@ public class SortDemo {
 			}
 		}
 	}
+	
+	/**
+	 * 基数排序算法
+	 * 属于分配式排序，又称“桶子法”
+	 * 1、将待排序序列中元素（正整数）按位数分割成不同的数字；
+	 * 2、从低位开始，划分0~9的桶，比较所有元素该位的值，放入相应匹配的桶中；
+	 * 3、全部放完后，依次从桶中取回原序列；
+	 * 4、再重复2,3步骤处理高一位，直至最高位处理完，即完成排序
+	 */
+	public static void radixSort(int[] arr) {
+		// 确定排序的次数（最大数有几位）
+		int max = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+		int times = 0;
+		while (max > 0) {
+			max /= 10;
+			times++;
+		}
+
+		// 划分10个桶（0到9），用于存放对应位匹配0到9的元素
+		ArrayList<ArrayList<Integer>> buckets = new ArrayList((int)(10/0.75+1));
+		for (int i = 0; i < 10; i++) {
+			buckets.add(new ArrayList<>());
+		}
+
+		// 每一位分配排序（判断改位值，放入对应桶中；再按次取回原序列）
+		for (int i = 0, n = 1; i < times; i++, n *= 10) {
+			for (int j = 0; j < arr.length; j++) {
+				int value = arr[j];
+				int index = value / n % 10;
+				buckets.get(index).add(value);
+			}
+			// 取回原序列
+			int index = 0;
+			for (ArrayList<Integer> bucket : buckets) {
+				Iterator<Integer> iterator = bucket.iterator();
+				while (iterator.hasNext()) {
+					arr[index++] = iterator.next();
+					// 清空桶，用于下一位处理
+					iterator.remove();
+				}
+			}
+		}
+
+	}
+
+
+
 
 	public static void main(String[] args) {
 		int[] arr = {2,1,5,3,4,9,7};
@@ -270,12 +319,14 @@ public class SortDemo {
 		// fastSort2(arr, 0, arr.length - 1);
 		// shellSort(arr);
 		// mergeSort(arr);
-		bucketSort(arr);
+		// bucketSort(arr);
+		radixSort(arr);
 		System.out.println(Arrays.toString(arr));
 		// shellSort(arr);
-		int[] arr2 = {222,221,5344,543,412,92,74};
+		int[] arr2 = {222,221,5344,543,452849,412,92,74};
 
-		bucketSort(arr2);
+		// bucketSort(arr2);
+		radixSort(arr2);
 		System.out.println(Arrays.toString(arr2));
 	}
 }
