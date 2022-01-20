@@ -35,5 +35,10 @@ public class HelloGC {
 		 *   执行class文件：在lwq所在父级目录执行：java lwq.demo.jvm.Hello （注意一定要带上完整包名）
 		 *
 		 */
+
+		/* 若报：HelloGC.java:30: 错误: 编码GBK的不可映射字符 这类错误。则加编码参数（和.java文件编码方式一致）即可：
+		 *  javac -encoding UTF-8 HelloGC.java
+		 *
+		 */
 	}
 }
