@@ -47,8 +47,8 @@ public class ReflectTest {
 		System.out.println(clazz.getName());
 
 		/**
-		 * getDeclared...   获取所有的属性、方法、构造器
-		 * get...           获取所有的public属性、方法、构造器
+		 * getDeclared...   获取所有的属性、方法、构造器（不包含父类）
+		 * get...           获取所有的public属性、方法、构造器（包含父类的）
 		 */
 		// 获取 Person 类的所有方法信息
 		Method[] declaredMethods = clazz.getDeclaredMethods();
