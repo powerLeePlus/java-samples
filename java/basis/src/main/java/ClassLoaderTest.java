@@ -17,7 +17,12 @@ public class ClassLoaderTest {
 
 	/**
 	 * 自定义类加载器
-	 * 自定义类加载需要实现findClass方法。loadClass方法会调用该方法
+	 * 自定义类加载器必须继承ClassLoader，然后覆盖findClass()方法
+	 * ClassLoader超类的loadClass方法用于将类的加载操作委托给父类加载器去进行，只有该类尚未加载并
+	 * 且父类加载器也无法加载该类时，才调用findClass()方法。
+	 * 如果要实现该方法，必须做到以下几点：
+	 * （1）、为来自本地文件系统或者其他来源的类加载其字节码
+	 * （2）、调用ClassLoader超类的defineClass()方法，向虚拟机提供字节码
 	 *
 	 * 虽然在绝大多数情况下，系统默认提供的类加载器实现已经可以满足需求。但是在某些情况下，您还
 	 * 是需要为应用开发出自己的类加载器。比如您的应用通过网络来传输 Java
@@ -27,6 +32,10 @@ public class ClassLoaderTest {
 	 */
 	static class MyClassLoader extends ClassLoader {
 
+		/**
+		 * 因为类加载器是基于委托机制，所以我们只需要重写findClass方法。
+		 * 它会自动向父类加载器委托，如果父类没有找到，就会再去调用我们重写的findClass方法加载
+		 */
 		@Override
 		protected Class<?> findClass(String name) throws ClassNotFoundException {
 			File file = new File("E:\\java\\study\\demos\\java\\basis\\src\\main\\java\\People.class");
