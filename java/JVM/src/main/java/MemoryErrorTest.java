@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author lwq
@@ -10,7 +11,8 @@ public class MemoryErrorTest {
 
 	public static void main(String[] args) {
 		// testStackOverflowError();
-		testOOMHeap();
+		// testOOMHeap();
+		testOOMPerm();
 	}
 
 	/**
@@ -104,5 +106,29 @@ public class MemoryErrorTest {
 		 * 疑问：为啥老年代总大小是12288k=12m呢，21-10=11应该是11啊？难道是JVM自动按2的整数倍设置的吗？
 		 *      将21改为22，老年代仍是12m；改为23却是和改为24一样都是14m。神奇！！！
 		 */
+	}
+
+	/**
+	 * jdk1.8以下：永久代溢出(OutOfMemoryError: PermGen space)
+	 * Hotspot jvm通过永久代实现了Java虚拟机规范中的方法区，而运行时的常量池就是保存在方法
+	 * 区中的，因此永久代溢出有可能是运行时常量池溢出，也有可能是方法区中保存的class对象没有被及时
+	 * 回收掉或者class信息占用的内存超过了配置。
+	 *
+	 * jdk1.8：元空间溢出(java.lang.OutOfMemoryError: Metaspace)
+	 *
+	 * 我们知道Java中字符串常量是放在常量池中的，String.intern()这个方法运行的时候，会检查常量池
+	 * 中是否存和本字符串相等的对象，如果存在直接返回常量池中对象的引用，不存在的话，先把此
+	 * 字符串加入常量池，然后再返回字符串的引用。那么我们就可以通过String.intern方法来模拟一下
+	 * 运行时常量区的溢出.
+	 *
+	 * JVM参数：-verbose:gc -Xmn5M -Xms10M -Xmx10M  -XX:+PrintGC
+	 *  jdk1.7：-XX:MaxPermSize=1M
+	 *  jdk1.8：-XX:MaxMetaspaceSize=1M
+	 */
+	public static void testOOMPerm() {
+		List<String> list = new ArrayList<>();
+		while (true) {
+			list.add(UUID.randomUUID().toString());
+		}
 	}
 }
