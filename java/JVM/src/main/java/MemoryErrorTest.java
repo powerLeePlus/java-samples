@@ -1,6 +1,8 @@
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author lwq
@@ -12,6 +14,7 @@ public class MemoryErrorTest {
 	public static void main(String[] args) {
 		// testStackOverflowError();
 		// testOOMHeap();
+		// testOOMStringIntern();
 		testOOMPerm();
 	}
 
@@ -110,25 +113,85 @@ public class MemoryErrorTest {
 
 	/**
 	 * jdk1.8以下：永久代溢出(OutOfMemoryError: PermGen space)
-	 * Hotspot jvm通过永久代实现了Java虚拟机规范中的方法区，而运行时的常量池就是保存在方法
-	 * 区中的，因此永久代溢出有可能是运行时常量池溢出，也有可能是方法区中保存的class对象没有被及时
+	 * Hotspot jvm通过永久代实现了Java虚拟机规范中的方法区，永久代溢出可能是方法区中保存的class对象没有被及时
 	 * 回收掉或者class信息占用的内存超过了配置。
 	 *
 	 * jdk1.8：元空间溢出(java.lang.OutOfMemoryError: Metaspace)
 	 *
-	 * 我们知道Java中字符串常量是放在常量池中的，String.intern()这个方法运行的时候，会检查常量池
-	 * 中是否存和本字符串相等的对象，如果存在直接返回常量池中对象的引用，不存在的话，先把此
-	 * 字符串加入常量池，然后再返回字符串的引用。那么我们就可以通过String.intern方法来模拟一下
-	 * 运行时常量区的溢出.
-	 *
-	 * JVM参数：-verbose:gc -Xmn5M -Xms10M -Xmx10M  -XX:+PrintGC
-	 *  jdk1.7：-XX:MaxPermSize=1M
-	 *  jdk1.8：-XX:MaxMetaspaceSize=1M
+	 * JVM参数：-Xmx50m -XX:-UseCompressedOops -XX:+PrintGCDetails
+	 *  jdk1.7：-XX:MaxPermSize=4m
+	 *  jdk1.8：-XX:MaxMetaspaceSize=4m
 	 */
 	public static void testOOMPerm() {
-		List<String> list = new ArrayList<>();
-		while (true) {
-			list.add(UUID.randomUUID().toString());
+		URL url = null;
+		List<ClassLoader> classLoaderList = new ArrayList<ClassLoader>();
+		try {
+			url = new File("/tmp").toURI().toURL();
+			URL[] urls = {url};
+			while (true){
+				ClassLoader loader = new URLClassLoader(urls);
+				classLoaderList.add(loader);
+				loader.loadClass("HelloGC");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		/* 结果
+		[GC (Metadata GC Threshold) [PSYoungGen: 1559K->792K(14848K)] 1559K->792K(49152K), 0.0025444 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]
+		[Full GC (Metadata GC Threshold) [PSYoungGen: 792K->0K(14848K)] [ParOldGen: 0K->692K(22528K)] 792K->692K(37376K), [Metaspace: 2704K->2704K(8192K)], 0.0055080 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
+		[GC (Last ditch collection) [PSYoungGen: 0K->0K(14848K)] 692K->692K(37376K), 0.0003796 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
+		[Full GC (Last ditch collection) [PSYoungGen: 0K->0K(14848K)] [ParOldGen: 692K->674K(34304K)] 692K->674K(49152K), [Metaspace: 2704K->2704K(8192K)], 0.0063723 secs] [Times: user=0.02 sys=0.00, real=0.01 secs]
+		FATAL ERROR in native method: processing of -javaagent failed
+		java.lang.OutOfMemoryError: Metaspace
+			at java.lang.ClassLoader.defineClass1(Native Method)
+			at java.lang.ClassLoader.defineClass(ClassLoader.java:763)
+			at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+			at java.net.URLClassLoader.defineClass(URLClassLoader.java:467)
+			at java.net.URLClassLoader.access$100(URLClassLoader.java:73)
+			at java.net.URLClassLoader$1.run(URLClassLoader.java:368)
+			at java.net.URLClassLoader$1.run(URLClassLoader.java:362)
+			at java.security.AccessController.doPrivileged(Native Method)
+			at java.net.URLClassLoader.findClass(URLClassLoader.java:361)
+			at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+			at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+			at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+			at sun.instrument.InstrumentationImpl.loadClassAndStartAgent(InstrumentationImpl.java:304)
+			at sun.instrument.InstrumentationImpl.loadClassAndCallPremain(InstrumentationImpl.java:401)
+		Exception in thread "main"
+		*/
 	}
+
+	/**
+	 * 通过String.intern()将字符串放入字符串常量池，模拟OutOfMemoryError: Java heap space
+	 *
+	 * jdk1.7后将字符串常量池和类静态变量转移到了java堆。所以用String.intern()无法模拟出永久代（元空间）溢出
+	 *
+	 * JVM参数：-Xms10M -Xmx10M
+	 */
+	static String  base = "string";
+	public static void testOOMStringIntern() {
+		// List<String> list = new ArrayList<>();
+		// while (true) {
+		// 	list.add(UUID.randomUUID().toString().intern());
+		// }
+		List<String> list = new ArrayList<String>();
+		for (int i=0;i< Integer.MAX_VALUE;i++){
+			String str = base + base;
+			base = str;
+			list.add(str.intern());
+		}
+
+		/* 结果
+		Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+		at java.util.Arrays.copyOf(Arrays.java:3332)
+		at java.lang.AbstractStringBuilder.expandCapacity(AbstractStringBuilder.java:137)
+		at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:121)
+		at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:421)
+		at java.lang.StringBuilder.append(StringBuilder.java:136)
+		at MemoryErrorTest.testOOMStringIntern(MemoryErrorTest.java:142)
+		at MemoryErrorTest.main(MemoryErrorTest.java:15)
+		*/
+	}
+
 }

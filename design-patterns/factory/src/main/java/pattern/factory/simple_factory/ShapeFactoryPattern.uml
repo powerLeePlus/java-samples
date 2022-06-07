@@ -3,8 +3,8 @@
   <ID>JAVA</ID>
   <OriginalElement>pattern.factory.simple_factory.ShapeFactory</OriginalElement>
   <nodes>
-    <node x="134.0" y="105.0">pattern.factory.Rectangle</node>
     <node x="171.37407407407406" y="210.0">pattern.factory.simple_factory.ShapeFactory</node>
+    <node x="134.0" y="105.0">pattern.factory.Rectangle</node>
     <node x="265.6189814814815" y="0.0">pattern.factory.Shape</node>
     <node x="274.0" y="105.0">pattern.factory.Circle</node>
     <node x="204.62407407407406" y="315.0">pattern.factory.FactoryPatternDemo</node>

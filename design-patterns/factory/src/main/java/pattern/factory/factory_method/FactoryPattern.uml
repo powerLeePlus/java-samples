@@ -15,31 +15,11 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="pattern.factory.FactoryPatternDemo" target="pattern.factory.factory_method.RectangleFactory">
-      <point x="-30.142857142857167" y="-50.5" />
-      <point x="339.91666666666663" y="484.0" />
-      <point x="271.41411564625855" y="484.0" />
-      <point x="-44.0" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.RectangleFactory" target="pattern.factory.Rectangle">
-      <point x="0.0" y="-27.5" />
-      <point x="315.41411564625855" y="389.0" />
-      <point x="326.98852040816325" y="389.0" />
-      <point x="0.0" y="27.5" />
-    </edge>
     <edge source="pattern.factory.factory_method.CircleFactory" target="pattern.factory.factory_method.Factory">
       <point x="50.66666666666663" y="-27.5" />
       <point x="166.74999999999994" y="389.0" />
       <point x="157.8218537414966" y="389.0" />
       <point x="-35.66666666666666" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.SquareFactory" target="pattern.factory.Shape">
-      <point x="50.666666666666686" y="-27.5" />
-      <point x="561.8333333333334" y="389.0" />
-      <point x="575.8210034013605" y="389.0" />
-      <point x="575.8210034013605" y="85.0" />
-      <point x="415.125" y="85.0" />
-      <point x="35.625" y="27.5" />
     </edge>
     <edge source="pattern.factory.Rectangle" target="pattern.factory.Shape">
       <point x="0.0" y="-27.5" />
@@ -47,43 +27,11 @@
       <point x="372.375" y="105.0" />
       <point x="-7.125" y="27.5" />
     </edge>
-    <edge source="pattern.factory.factory_method.Factory" target="pattern.factory.Shape">
-      <point x="0.0" y="-27.5" />
-      <point x="193.48852040816325" y="95.0" />
-      <point x="358.125" y="95.0" />
-      <point x="-21.375" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.FactoryPatternDemo" target="pattern.factory.factory_method.SquareFactory">
-      <point x="60.28571428571428" y="-50.5" />
-      <point x="430.3452380952381" y="494.0" />
-      <point x="549.1666666666667" y="494.0" />
-      <point x="38.0" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.CircleFactory" target="pattern.factory.Circle">
-      <point x="-50.66666666666663" y="-27.5" />
-      <point x="65.41666666666669" y="389.0" />
-      <point x="57.0" y="389.0" />
-      <point x="0.0" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.CircleFactory" target="pattern.factory.Shape">
-      <point x="0.0" y="-27.5" />
-      <point x="116.08333333333331" y="389.0" />
-      <point x="124.5" y="389.0" />
-      <point x="124.5" y="85.0" />
-      <point x="343.875" y="85.0" />
-      <point x="-35.625" y="27.5" />
-    </edge>
     <edge source="pattern.factory.factory_method.SquareFactory" target="pattern.factory.factory_method.Factory">
       <point x="-50.66666666666663" y="-27.5" />
       <point x="460.50000000000006" y="379.0" />
       <point x="229.1551870748299" y="379.0" />
       <point x="35.66666666666666" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.SquareFactory" target="pattern.factory.Square">
-      <point x="0.0" y="-27.5" />
-      <point x="511.1666666666667" y="389.0" />
-      <point x="504.32100340136054" y="389.0" />
-      <point x="0.0" y="27.5" />
     </edge>
     <edge source="pattern.factory.Circle" target="pattern.factory.Shape">
       <point x="0.0" y="-27.5" />
@@ -97,43 +45,21 @@
       <point x="400.875" y="95.0" />
       <point x="21.375" y="27.5" />
     </edge>
-    <edge source="pattern.factory.FactoryPatternDemo" target="pattern.factory.factory_method.CircleFactory">
-      <point x="-90.42857142857144" y="-50.5" />
-      <point x="279.63095238095235" y="504.0" />
-      <point x="78.08333333333331" y="504.0" />
-      <point x="-38.0" y="27.5" />
-    </edge>
-    <edge source="pattern.factory.factory_method.RectangleFactory" target="pattern.factory.Shape">
-      <point x="58.66666666666666" y="-27.5" />
-      <point x="374.0807823129252" y="389.0" />
-      <point x="419.5595238095238" y="389.0" />
-      <point x="419.5595238095238" y="105.0" />
-      <point x="386.625" y="105.0" />
-      <point x="7.125" y="27.5" />
-    </edge>
     <edge source="pattern.factory.factory_method.RectangleFactory" target="pattern.factory.factory_method.Factory">
       <point x="-58.66666666666666" y="-27.5" />
       <point x="256.74744897959187" y="389.0" />
       <point x="193.48852040816325" y="389.0" />
       <point x="0.0" y="27.5" />
     </edge>
-    <edge source="pattern.factory.FactoryPatternDemo" target="pattern.factory.Shape">
-      <point x="90.42857142857144" y="-50.5" />
-      <point x="460.48809523809524" y="504.0" />
-      <point x="597.6666666666667" y="504.0" />
-      <point x="597.6666666666667" y="75.0" />
-      <point x="429.375" y="75.0" />
-      <point x="49.875" y="27.5" />
-    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="317.5" y="360.0" />
+  <settings layout="Hierarchic Group" zoom="0.8480620155038759" x="294.0" y="312.5" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
-    <Category>Methods</Category>
     <Category>Constructors</Category>
-    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
     <Category>Properties</Category>
+    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
