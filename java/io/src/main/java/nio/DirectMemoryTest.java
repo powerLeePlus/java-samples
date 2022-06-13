@@ -1,4 +1,4 @@
-package demo.lwq.java.io.nio;
+package nio;
 
 import java.nio.ByteBuffer;
 
