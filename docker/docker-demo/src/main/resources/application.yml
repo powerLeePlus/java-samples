@@ -1,0 +1,4 @@
+server:
+  port: 8990
+logging:
+  path: /home/developer/app/logs/
