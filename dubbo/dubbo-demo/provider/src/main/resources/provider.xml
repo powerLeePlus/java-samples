@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="hello-world-app">
+    </dubbo:application>
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!-- 使用Multicast注册中心配置，缺省配置为通过Multicast注册中心广播互相发现。所以在同一台机器时需设置unicast=false：即：multicast://224.5.6.7:1234?unicast=false，否则发给消费者的单播消息可能被提供者抢占，两个消费者在同一台机器也一样，只有multicast注册中心有此问题。-->
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234?unicast=false"/>-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <!-- 广播端：直连模式 -->
+    <!--<dubbo:registry address="N/A"/>-->
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="lwq.java.study.dubbo.demo.DemoService" ref="demoService"/>
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="demoService" class="lwq.java.study.dubbo.demo.provider.service.impl.DemoServiceImpl"/>
+
+</beans>

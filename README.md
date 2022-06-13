@@ -13,7 +13,7 @@ hbase
 
 设计模式
 
-java基础、多线程
+java基础、IO、多线程
 
 rabbitmq
 
@@ -22,6 +22,8 @@ shiro
 算法
 
 netty
+
+dubbo
 
 spring cloud alibaba
 。。。。。。
