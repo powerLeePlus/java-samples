@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>demo.lwq.canal</groupId>
-    <artifactId>canal-parent</artifactId>
+    <artifactId>canal</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
