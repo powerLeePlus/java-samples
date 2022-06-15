@@ -1,5 +1,5 @@
-# demos
-java相关demo、测试案例等
+# samples
+java相关sample、测试案例等
 
 ssm
 
