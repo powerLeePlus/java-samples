@@ -20,6 +20,10 @@ public class ThreadLocalDemo {
 	 *
 	 * 注意Thread实例和ThreadLocal实例的生存周期，因为他们直接关联着存储数据的生命周期
 	 * 如果频繁的在线程中new ThreadLocal对象，在使用结束时，最好调用ThreadLocal.remove来释放其value的引用，避免在ThreadLocal被回收时value无法被访问却又占用着内存
+	 * 内存泄露举例：
+	 ***使用线程池提供线程，则实际每次任务执行完归还线程，但是线程实际并未退出，则线程属性ThreadLocalMap不会被回收，
+	 ***作为key的ThreadLocal和作为value的变量还在被引用，所以也不会被回收，但是实际上任务执行完该变量已经不再使用了，
+	 ***由此造成了内存泄露，最终可能触发OOM
 	 *
 	 * 链接：https://www.jianshu.com/p/1a5d288bdaee
 	 *
