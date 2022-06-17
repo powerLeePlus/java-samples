@@ -51,5 +51,26 @@ public class SynchronizedTest {
 		Thread.sleep(2000);
 		testClass2();
 	}
+	
+	
+	/**
+	 * 死锁演示1：类锁下的死锁
+	 */
+	public static class E {
+		public static synchronized void test() throws InterruptedException {
+			System.out.println(Thread.currentThread().getName() + "---E.test Doing");
+			Thread.sleep(2000);
+			System.out.println(Thread.currentThread().getName() + "---E.test ready to do E1.test");
+			E1.test();
+		}
+	}
+	public static class E1 {
+		public static synchronized void test() throws InterruptedException {
+			System.out.println(Thread.currentThread().getName() + "---E1.test Doing");
+			Thread.sleep(2000);
+			System.out.println(Thread.currentThread().getName() + "---E1.test ready to do E.test");
+			E.test();
+		}
+	}
 
 }

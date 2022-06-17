@@ -9,6 +9,9 @@ import java.util.concurrent.CountDownLatch;
  */
 public class SynchronizedInvokeTest {
 
+	/**
+	 * synchronized不同情况锁效果演示
+	 */
 	public static class Client {
 
 		/**
@@ -174,6 +177,50 @@ public class SynchronizedInvokeTest {
 			Client client = new Client();
 			// client.test();
 			client.test2();
+		}
+	}
+
+	/**
+	 * 死锁演示
+	 */
+	public static class Client2 {
+		public static void main(String[] args) {
+			test();
+		}
+
+		/**
+		 * 类锁下的死锁演示
+		 */
+		public static void test() {
+			CountDownLatch c = new CountDownLatch(1);
+			new Thread(() -> {
+				try {
+					System.out.println(Thread.currentThread().getName() + "启动");
+					c.await();
+					SynchronizedTest.E.test();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			new Thread(() -> {
+				try {
+					System.out.println(Thread.currentThread().getName() + "启动");
+					c.await();
+					SynchronizedTest.E1.test();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			c.countDown();
+
+			/* 结果：E1.test调用E.test 和 E.test调用E1.test出现了相互等待，造成了死锁
+			Thread-0启动
+			Thread-0---E.test Doing
+			Thread-1启动
+			Thread-1---E1.test Doing
+			Thread-1---E1.test ready to do E.test
+			Thread-0---E.test ready to do E1.test
+			*/
 		}
 	}
 }
