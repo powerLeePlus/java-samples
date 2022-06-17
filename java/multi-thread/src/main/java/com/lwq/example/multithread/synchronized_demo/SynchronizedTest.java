@@ -19,7 +19,7 @@ public class SynchronizedTest {
 		}
 	}
 	/**
-	 * 方法锁
+	 * 方法锁（效果等同于对象锁，即：test2和test1效果一样都相当于对象锁）
 	 */
 	public synchronized void test2() throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + "---test2 Doing");

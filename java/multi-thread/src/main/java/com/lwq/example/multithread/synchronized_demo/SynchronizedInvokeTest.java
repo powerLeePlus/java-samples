@@ -91,9 +91,51 @@ public class SynchronizedInvokeTest {
 			*/
 		}
 
+		/**
+		 * 不同对象访问对象锁测试
+		 */
+		public void test() {
+			final CountDownLatch c = new CountDownLatch(1);
+			new Thread(() -> {
+				SynchronizedTest test = new SynchronizedTest();
+				System.out.println(Thread.currentThread().getName() + "启动");
+				try {
+					c.await();
+					test.test2();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}).start();
+			new Thread(() -> {
+				System.out.println(Thread.currentThread().getName() + "启动");
+				SynchronizedTest test = new SynchronizedTest();
+				try {
+					c.await();
+					test.test1();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			c.countDown();
+
+			/* 结果：完全没问题。因为是不同对象持有自己的锁
+			Thread-1启动
+			Thread-0启动
+			Thread-0--- test1 Doing
+			Thread-1---test2 Doing
+			Thread-0---test2 Doing
+			Thread-1--- test1 Doing
+			Thread-0--- test1 Doing
+			*/
+		}
+
 		public static void main(String[] args) {
 			// testClass();
-			testClass2();
+			// testClass2();
+
+			Client client = new Client();
+			client.test();
 		}
 	}
 }
