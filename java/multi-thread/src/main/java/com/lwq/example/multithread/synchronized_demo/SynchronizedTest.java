@@ -43,8 +43,8 @@ public class SynchronizedTest {
 	public static synchronized void testClass2() throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + "---testClass2 Doing");
 		Thread.sleep(2000);
-		// testClass3();
-		new SynchronizedTest().testClass1();
+		testClass3();
+		// new SynchronizedTest().testClass1();
 	}
 	public static synchronized void testClass3() throws InterruptedException {
 		System.out.println(Thread.currentThread().getName() + "---testClass3 Doing");
