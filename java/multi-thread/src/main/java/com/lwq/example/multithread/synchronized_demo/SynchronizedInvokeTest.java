@@ -184,9 +184,6 @@ public class SynchronizedInvokeTest {
 	 * 死锁演示
 	 */
 	public static class Client2 {
-		public static void main(String[] args) {
-			test();
-		}
 
 		/**
 		 * 类锁下的死锁演示
@@ -221,6 +218,49 @@ public class SynchronizedInvokeTest {
 			Thread-1---E1.test ready to do E.test
 			Thread-0---E.test ready to do E1.test
 			*/
+		}
+
+		/**
+		 * 对象锁下的死锁演示
+		 */
+		public static void test2() {
+			CountDownLatch c = new CountDownLatch(1);
+			SynchronizedTest test = new SynchronizedTest();
+			String s = "hello";
+			Object obj = new Object();
+			new Thread(() -> {
+				try {
+					System.out.println(Thread.currentThread().getName() + "启动");
+					c.await();
+					test.test1(s, obj);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			new Thread(() -> {
+				try {
+					System.out.println(Thread.currentThread().getName() + "启动");
+					c.await();
+					test.test2(s, obj);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			c.countDown();
+
+			/* 结果：Thread-0持有s锁，需要锁obj;同时Thread-1持有obj锁，需要锁s；都在等对方对方的锁释放，造成死锁
+			Thread-0启动
+			Thread-0---test1 Doing
+			Thread-1启动
+			Thread-1---test2 Doing
+			Thread-1---test2 obj locked, ready to lock s
+			Thread-0---test1 s locked, ready to lock obj
+			*/
+		}
+
+		public static void main(String[] args) {
+			// test();
+			test2();
 		}
 	}
 }

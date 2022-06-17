@@ -73,4 +73,29 @@ public class SynchronizedTest {
 		}
 	}
 
+	/**
+	 * 死锁演示2：对象锁下的死锁
+	 */
+	public void test1(String s, Object obj) throws InterruptedException {
+		System.out.println(Thread.currentThread().getName() + "---test1 Doing");
+		synchronized (s) {
+			Thread.sleep(2000);
+			System.out.println(Thread.currentThread().getName() + "---test1 s locked, ready to lock obj");
+			synchronized (obj) {
+				Thread.sleep(2000);
+				System.out.println(Thread.currentThread().getName() + "---test1 obj locked");
+			}
+		}
+	}
+	public void test2(String s, Object obj) throws InterruptedException {
+		System.out.println(Thread.currentThread().getName() + "---test2 Doing");
+		synchronized (obj) {
+			Thread.sleep(2000);
+			System.out.println(Thread.currentThread().getName() + "---test2 obj locked, ready to lock s");
+			synchronized (s) {
+				Thread.sleep(2000);
+				System.out.println(Thread.currentThread().getName() + "---test2 s locked");
+			}
+		}
+	}
 }
