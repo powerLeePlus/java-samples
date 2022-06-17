@@ -130,12 +130,50 @@ public class SynchronizedInvokeTest {
 			*/
 		}
 
+		/**
+		 * 同一个对象访问对象锁测试
+		 */
+		public void test2() {
+			final CountDownLatch c = new CountDownLatch(1);
+			SynchronizedTest test = new SynchronizedTest();
+			new Thread(() -> {
+				System.out.println(Thread.currentThread().getName() + "启动");
+				try {
+					c.await();
+					test.test2();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}).start();
+			new Thread(() -> {
+				System.out.println(Thread.currentThread().getName() + "启动");
+				try {
+					c.await();
+					test.test1();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+			c.countDown();
+
+			/* 结果：同一个对象，两个线程访问对象锁，会有一个先拿到锁，另一个需要等待直到锁释放，如果一直不释放就会一直阻塞
+			Thread-1启动
+			Thread-1--- test1 Doing
+			Thread-0启动
+			Thread-1---test2 Doing
+			Thread-1--- test1 Doing
+			*/
+		}
+
+
 		public static void main(String[] args) {
 			// testClass();
 			// testClass2();
 
 			Client client = new Client();
-			client.test();
+			// client.test();
+			client.test2();
 		}
 	}
 }
