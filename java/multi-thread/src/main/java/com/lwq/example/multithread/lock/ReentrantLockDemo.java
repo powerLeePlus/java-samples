@@ -45,6 +45,11 @@ public class ReentrantLockDemo {
 	/**
 	 * ReentrantLock + Condition
 	 * 示例：两个线程A，B轮流打印1-100
+	 * 基本流程 ->
+	 * --- lock
+	 * --- signal
+	 * --- await
+	 * --- unlock
 	 */
 	public static class Task implements Runnable {
 		public CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -53,68 +58,67 @@ public class ReentrantLockDemo {
 		private Condition condition = lock.newCondition();
 
 		@Override
-		public void run(){
-			try {
-				countDownLatch.await();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			while(number<100){
-				System.out.println(Thread.currentThread().getName() + "---准备拿锁");
-
-				lock.lock();
-				number++;
-				System.out.println(Thread.currentThread().getName() + "---打印：" + number);
-				condition.signal();
-				try{
-					if(number<100)
-						condition.await();
-				}catch (InterruptedException e) {
-					e.printStackTrace();
-				}finally{
-					lock.unlock();
-				}
-				System.out.println(Thread.currentThread().getName() + "---锁释放后处理...");
-
-			}
-		}
-
-		// public void run() {
+		// public void run(){
 		// 	try {
 		// 		countDownLatch.await();
 		// 	} catch (InterruptedException e) {
 		// 		e.printStackTrace();
 		// 	}
-		// 	while (number <= 100) {
+		// 	while(number<100){
 		// 		System.out.println(Thread.currentThread().getName() + "---准备拿锁");
+		//
 		// 		lock.lock();
-		// 		System.out.println(Thread.currentThread().getName() + "---打印：" + number++);
-		// 		condition.signal(); // 唤醒其他调用了await的线程
-		// 		try {
-		// 			if (number <= 100) {
-		// 				condition.await(3, TimeUnit.SECONDS); // 阻塞当前队列并自动释放Lock
-		// 			}
-		// 		} catch (Exception e) {
+		// 		number++;
+		// 		System.out.println(Thread.currentThread().getName() + "---打印：" + number);
+		// 		condition.signal();
+		// 		try{
+		// 			if(number<100)
+		// 				condition.await();
+		// 		}catch (InterruptedException e) {
 		// 			e.printStackTrace();
-		// 		} finally {
-		// 			// lock.unlock();
+		// 		}finally{
+		// 			lock.unlock();
 		// 		}
 		// 		System.out.println(Thread.currentThread().getName() + "---锁释放后处理...");
-		// 	}
 		//
-		// 	try {
-		// 		Thread.sleep(1000);
-		// 	} catch (InterruptedException e) {
-		// 		e.printStackTrace();
-		// 	}
-		// 	System.out.println(Thread.currentThread().getName() + "---最后是否还未释放锁：" + lock.isLocked() + "---是否自己持有锁：" + lock.isHeldByCurrentThread());
-		// 	if (lock.isLocked()) {
-		// 		lock.lock();
-		// 		condition.signalAll();
-		// 		lock.unlock();
-		// 		System.out.println(Thread.currentThread().getName() + "---最后释放锁");
 		// 	}
 		// }
+
+		public void run() {
+			try {
+				countDownLatch.await();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			while (number <= 100) {
+				System.out.println(Thread.currentThread().getName() + "---准备拿锁");
+				lock.lock();
+				System.out.println(Thread.currentThread().getName() + "---打印：" + number++);
+				condition.signal(); // 唤醒其他调用了await的线程
+				try {
+					if (number <= 100) {
+						condition.await(); // 阻塞当前队列并自动释放Lock
+						// condition.await(3, TimeUnit.SECONDS);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					lock.unlock(); // 如果这里不释放锁，会导致最后有一个线程一直处于等待获取锁的状态。
+				}
+				System.out.println(Thread.currentThread().getName() + "---锁释放后处理...");
+			}
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println(Thread.currentThread().getName() + "---最后是否还未释放锁：" + lock.isLocked() + "---是否自己持有锁：" + lock.isHeldByCurrentThread());
+			// if (lock.isLocked()) {
+			// 	lock.unlock();
+			// 	System.out.println(Thread.currentThread().getName() + "---最后释放锁");
+			// }
+		}
 	}
 
 	public static void main(String[] args) {
