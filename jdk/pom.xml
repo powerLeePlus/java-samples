@@ -12,6 +12,7 @@
         <module>java8</module>
         <module>JVM</module>
         <module>multi-thread</module>
+        <module>spi</module>
         <module>thread</module>
         <module>util</module>
 	    <module>io</module>

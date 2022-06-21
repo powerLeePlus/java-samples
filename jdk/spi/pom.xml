@@ -9,7 +9,7 @@
 	<name>spi</name>
 	<parent>
 		<groupId>demo.lwq.java</groupId>
-		<artifactId>java</artifactId>
+		<artifactId>jdk</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<build>
