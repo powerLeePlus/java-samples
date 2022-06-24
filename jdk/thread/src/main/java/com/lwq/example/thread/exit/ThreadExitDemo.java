@@ -34,7 +34,7 @@ public class ThreadExitDemo {
 		// 			Thread.sleep(1L);
 		// 		} catch (InterruptedException e) { // 阻塞通过中断异常退出
 		// 			e.printStackTrace();
-		// 			break; // 抛出中断异常不会将中断标志置为true，也即isInterrupted()返回false。所以抛出中断异常需要自己手动推出循环
+		// 			break; // 抛出中断异常不会将中断标志置为true，也即isInterrupted()返回false。所以抛出中断异常需要自己手动退出循环。（许多声明抛出InterruptedException 的方法(如 Thread.sleep(long mills 方法))，抛出异常前，都会清除中断标识位，所以抛出异常后，调用 isInterrupted()方法将会返回 false。）
 		// 		}
 		// 	}
 		// 	System.out.println(Thread.currentThread().getName() + " --- 执行完这里就会退出");
