@@ -33,6 +33,9 @@ public class InterruptDemo1 extends Thread {
             /** 方法执行完，线程就退出了
              */
             if (Thread.currentThread().isInterrupted()) {
+                /**
+                 * 注意 isInterrupted与Thread.interrupted()的区别，后者会重置中断标识;
+                 */
                 System.out.println("Thread interrupted. Exiting...");
                 break;
             } else {
