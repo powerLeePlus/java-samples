@@ -91,7 +91,7 @@ public class MyAbstractQueuedSynchronizer {
 			executorService.execute(() -> {
 				System.out.println(Thread.currentThread().getName() + "---准备获取锁");
 				try {
-					// synchronizer.lock();
+					synchronizer.lock();
 					// while (!synchronizer.tryLock()) {
 					// 	// 自旋获取锁
 					// }
