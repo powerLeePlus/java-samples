@@ -1,6 +1,10 @@
 # springboot 异步请求和异步处理
 
-## WEB异步
+## WEB异步请求（AsyncRestTemplate）
+1. AsyncRestTemplate
+
+本例：AsyncRestTemplate + Callable<?>：可以实现请求和请求处理异步不阻塞，AsyncRestTemplate请求后立即返回没有阻塞，通过定义的回调接收返回结果。
+## WEB异步处理请求（Controller）
 1. Callable<?>
 2. DeferredResult<?>
 3. WebAsyncTask<?>

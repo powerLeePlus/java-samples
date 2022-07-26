@@ -4,9 +4,13 @@ import java.time.LocalTime;
 import java.util.concurrent.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
@@ -111,5 +115,26 @@ public class HelloController {
 		System.out.println("controller，end，线程：" + Thread.currentThread().getName() + "，当前时间（分）：" + LocalTime.now());
 
 		return completableFuture1.get() + completableFuture2.get() + completableFuture3.get();
+	}
+
+	// 通过AsyncRestTemplate调用rest异步接口
+	public static void main(String[] args) {
+		AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
+		System.out.println("异步请求start");
+		//调用完后立即返回（没有阻塞）
+		ListenableFuture<ResponseEntity<String>> forEntity = asyncRestTemplate.getForEntity("http://localhost:8080/test1", String.class);
+		//设置异步回调
+		forEntity.addCallback(new ListenableFutureCallback<ResponseEntity<String>>() {
+			@Override
+			public void onFailure(Throwable throwable) {
+				System.out.println("请求失败，" + throwable.getMessage());
+			}
+
+			@Override
+			public void onSuccess(ResponseEntity<String> stringResponseEntity) {
+				System.out.println("请求结果：" + stringResponseEntity.getBody());
+			}
+		});
+		System.out.println("异步请求end");
 	}
 }
