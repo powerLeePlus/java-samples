@@ -32,5 +32,12 @@
 - 在src/main/resources下新建META-INF目录，其下新建spring.factories,并将如下自动配置内容写入：
 ```org.springframework.boot.autoconfigure.EnableAutoConfiguration=demo.lwq.spring.boot.starter.customizer.CustomizerConfiguration```
 
+### 五、思考
+思考如下问题：
+1. spring容器如何处理配置类；
+2. spring boot配置类的加载情况；
+3. spring.factories中的EnableAutoConfiguration配置何时被加载？
+4. spring.factories中的EnableAutoConfiguration配置被加载后做了什么处理；
+
 
 
