@@ -11,6 +11,7 @@
 	
 	<modules>
 		<module>spring-mvc</module>
+		<module>spring-ioc</module>
 	</modules>
 
     <dependencies>

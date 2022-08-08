@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://www.springframework.org/schema/beans"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!--1、构造器注入 start-->
+	<!--<bean id="a" class="com.lwq.spring.ioc.circular_reference.StudentA">
+		<constructor-arg index="0" ref="b"/>
+	</bean>
+	<bean id="b" class="com.lwq.spring.ioc.circular_reference.StudentB">
+		<constructor-arg index="0" ref="c"/>
+	</bean>
+	<bean id="c" class="com.lwq.spring.ioc.circular_reference.StudentC">
+		<constructor-arg index="0" ref="a"/>
+	</bean>-->
+	<!--1、构造器注入 end-->
+
+	<!--2、setter注入单例 start-->
+	<!--<bean id="a" class="com.lwq.spring.ioc.circular_reference.StudentA">
+		<property name="studentB" ref="b"/>
+	</bean>
+	<bean id="b" class="com.lwq.spring.ioc.circular_reference.StudentB">
+		<property name="studentC" ref="c"/>
+	</bean>
+	<bean id="c" class="com.lwq.spring.ioc.circular_reference.StudentC">
+		<property name="studentA" ref="a"/>
+	</bean>-->
+	<!--2、setter注入单例 end-->
+
+	<!--3、setter注入原型 start-->
+	<bean id="a" class="com.lwq.spring.ioc.circular_reference.StudentA" scope="prototype">
+		<property name="studentB" ref="b"/>
+	</bean>
+	<bean id="b" class="com.lwq.spring.ioc.circular_reference.StudentB" scope="prototype">
+		<property name="studentC" ref="c"/>
+	</bean>
+	<bean id="c" class="com.lwq.spring.ioc.circular_reference.StudentC" scope="prototype">
+		<property name="studentA" ref="a"/>
+	</bean>
+	<!--3、setter注入原型 end-->
+
+</beans>
