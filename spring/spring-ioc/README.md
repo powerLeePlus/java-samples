@@ -33,7 +33,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 	// 属性注入（依赖注入）
 	populateBean(beanName, mbd, instanceWrapper);
 	......
-	// 初始化方法
+	// 初始化方法（为Bean实例对象添加BeanPostProcessor后置处理器的入口就是这个initializeBean方法。）
 	exposedObject = initializeBean(beanName, exposedObject, mbd);
 	......
 }
