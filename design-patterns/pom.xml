@@ -18,6 +18,7 @@
         <module>abstract-factory</module>
         <module>adapter</module>
 	    <module>template</module>
+        <module>singleton</module>
     </modules>
 
     <properties>
