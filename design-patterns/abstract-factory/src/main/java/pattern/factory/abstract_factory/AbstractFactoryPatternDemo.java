@@ -10,34 +10,17 @@ import pattern.factory.abstract_factory.products2.Color;
 public class AbstractFactoryPatternDemo {
 
 	public static void main(String[] args) {
-		createProducts1();
-		createProducts2();
-	}
-
-	public static void createProducts1() {
-		AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
-
-		Shape rectangle = shapeFactory.getShape("RECTANGLE");
-		rectangle.draw();
-
-		Shape square = shapeFactory.getShape("SQUARE");
-		square.draw();
-
-		Shape circle = shapeFactory.getShape("CIRCLE");
+		AbstractFactory factory1 = new Factory1();
+		Shape circle = factory1.createShape("CIRCLE");
+		Color red = factory1.createColor("RED");
 		circle.draw();
-
-	}
-
-	public static void createProducts2() {
-		AbstractFactory colorFactory = FactoryProducer.getFactory("COLOR");
-
-		Color red = colorFactory.getColor("RED");
 		red.fill();
 
-		Color green = colorFactory.getColor("GREEN");
+		AbstractFactory factory2 = new Factory2();
+		Shape rectangle = factory2.createShape("RECTANGLE");
+		Color green = factory2.createColor("GREEN");
+		rectangle.draw();
 		green.fill();
-
-		Color blue = colorFactory.getColor("blue");
-		blue.fill();
 	}
+
 }
