@@ -19,6 +19,7 @@
         <module>adapter</module>
 	    <module>template</module>
         <module>singleton</module>
+	    <module>builder</module>
     </modules>
 
     <properties>
