@@ -14,7 +14,9 @@ public class RedSharpDecorator extends SharpDecorator {
 
 	@Override
 	public void draw() {
+		// 做一些额外的操作
 		decoratedSharp.draw();
+		// 做一些额外的操作
 		setRedBorder(decoratedSharp);
 	}
 
