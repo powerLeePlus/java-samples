@@ -31,3 +31,8 @@
 - Adapatee：被适配者：mp4/vlc播放器
 
 一句话理解：原有接口A和B，现要求通过A能访问到B，就需要一个中间层C适配
+
+## 3种模式：
+1. 类适配：创建新类，继承源类，并实现新接口，例如 class adapter extends oldClass implements newFunc{}
+2. 对象适配：创建新类持源类的实例，并实现新接口，例如 class adapter implements newFunc { private oldClass oldInstance ;}
+3. 接口适配：创建新的抽象类实现旧接口方法。例如 abstract class adapter implements oldClassFunc { void newFunc();}
