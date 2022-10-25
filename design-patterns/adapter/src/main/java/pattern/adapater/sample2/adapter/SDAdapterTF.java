@@ -1,7 +1,7 @@
 package pattern.adapater.sample2.adapter;
 
 import pattern.adapater.sample2.adaptee.TFCard;
-import pattern.adapater.sample2.target.SDCard;
+import pattern.adapater.sample2.targetinterface.SDCard;
 
 /**
  * @author lwq

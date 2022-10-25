@@ -3,10 +3,10 @@ package pattern.adapater.sample2;
 import pattern.adapater.sample2.adaptee.TFCard;
 import pattern.adapater.sample2.adaptee.TFCardImpl;
 import pattern.adapater.sample2.adapter.SDAdapterTF;
-import pattern.adapater.sample2.target.Computer;
-import pattern.adapater.sample2.target.SDCard;
-import pattern.adapater.sample2.target.SDCardImpl;
-import pattern.adapater.sample2.target.XiaomiComputer;
+import pattern.adapater.sample2.targetinterface.Computer;
+import pattern.adapater.sample2.targetinterface.SDCard;
+import pattern.adapater.sample2.targetinterface.SDCardImpl;
+import pattern.adapater.sample2.targetinterface.XiaomiComputer;
 
 /**
  * @author lwq
