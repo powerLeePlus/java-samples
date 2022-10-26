@@ -8,7 +8,7 @@ import pattern.proxy.TargetObject;
 import pattern.proxy.TargetObjectImpl;
 
 /**
- * 动态代理
+ * JDK动态代理
  * @author lwq
  * @date 2022/10/25 0025
  * @since
@@ -16,7 +16,7 @@ import pattern.proxy.TargetObjectImpl;
 /**
  * 关键点1：实现InvocationHandler的invoke方法（该方法中做增强，并调用目标对象原方法）
  */
-public class DynamicProxy implements InvocationHandler {
+public class JDKProxy implements InvocationHandler {
 
 	/**
 	 * 关键点2：持有目标对象实例
@@ -24,7 +24,7 @@ public class DynamicProxy implements InvocationHandler {
 	 */
 	private Object target;
 
-	public DynamicProxy(Object target) {
+	public JDKProxy(Object target) {
 		this.target = target;
 	}
 
@@ -48,7 +48,7 @@ public class DynamicProxy implements InvocationHandler {
 		/**
 		 * 关键点4：通过Proxy.newProxyInstance()创建出代理类，传入目标类所在类加载器、目标对象接口、InvocationHandler实例
 		 */
-		TargetObject proxyInstance = (TargetObject) Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(), new Class[]{TargetObject.class}, new DynamicProxy(new TargetObjectImpl()));
+		TargetObject proxyInstance = (TargetObject) Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), new Class[]{TargetObject.class}, new JDKProxy(new TargetObjectImpl()));
 		String method = proxyInstance.method();
 		System.out.println(method);
 	}
