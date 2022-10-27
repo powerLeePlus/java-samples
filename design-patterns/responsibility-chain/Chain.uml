@@ -4,59 +4,31 @@
   <OriginalElement>pattern.chain.ConsoleLogger</OriginalElement>
   <nodes>
     <node x="0.0" y="171.0">pattern.chain.FileLogger</node>
-    <node x="167.0" y="171.0">pattern.chain.ErrorLogger</node>
-    <node x="145.75" y="286.0">pattern.chain.ChainPatternDemo</node>
-    <node x="214.3125" y="0.0">pattern.chain.AbstractLogger</node>
+    <node x="166.0" y="174.0">pattern.chain.ErrorLogger</node>
+    <node x="0.0" y="271.0">pattern.chain.ChainPatternDemo</node>
+    <node x="134.5" y="0.0">pattern.chain.AbstractLogger</node>
     <node x="334.0" y="171.0">pattern.chain.ConsoleLogger</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="pattern.chain.ChainPatternDemo" target="pattern.chain.FileLogger">
-      <point x="-75.1428571428572" y="-39.0" />
-      <point x="202.1071428571428" y="256.0" />
-      <point x="110.25" y="256.0" />
-      <point x="36.75" y="27.5" />
-    </edge>
     <edge source="pattern.chain.ErrorLogger" target="pattern.chain.AbstractLogger">
       <point x="0.0" y="-27.5" />
-      <point x="240.5" y="151.0" />
-      <point x="293.8125" y="151.0" />
-      <point x="-26.5" y="60.5" />
-    </edge>
-    <edge source="pattern.chain.ChainPatternDemo" target="pattern.chain.ErrorLogger">
-      <point x="-37.57142857142861" y="-39.0" />
-      <point x="239.6785714285714" y="246.0" />
-      <point x="203.75" y="246.0" />
-      <point x="-36.75" y="27.5" />
+      <point x="0.0" y="60.5" />
     </edge>
     <edge source="pattern.chain.ConsoleLogger" target="pattern.chain.AbstractLogger">
       <point x="0.0" y="-27.5" />
-      <point x="410.0" y="151.0" />
-      <point x="346.8125" y="151.0" />
-      <point x="26.5" y="60.5" />
-    </edge>
-    <edge source="pattern.chain.ChainPatternDemo" target="pattern.chain.AbstractLogger">
-      <point x="112.71428571428572" y="-39.0" />
-      <point x="389.9642857142857" y="266.0" />
-      <point x="496.5" y="266.0" />
-      <point x="496.5" y="141.0" />
-      <point x="399.8125" y="141.0" />
-      <point x="79.5" y="60.5" />
+      <point x="410.0" y="146.0" />
+      <point x="311.1666666666667" y="146.0" />
+      <point x="70.66666666666669" y="60.5" />
     </edge>
     <edge source="pattern.chain.FileLogger" target="pattern.chain.AbstractLogger">
       <point x="0.0" y="-27.5" />
-      <point x="73.5" y="141.0" />
-      <point x="240.8125" y="141.0" />
-      <point x="-79.5" y="60.5" />
-    </edge>
-    <edge source="pattern.chain.ChainPatternDemo" target="pattern.chain.ConsoleLogger">
-      <point x="75.14285714285711" y="-39.0" />
-      <point x="352.3928571428571" y="256.0" />
-      <point x="448.0" y="256.0" />
-      <point x="38.0" y="27.5" />
+      <point x="73.5" y="146.0" />
+      <point x="169.83333333333331" y="146.0" />
+      <point x="-70.66666666666669" y="60.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="243.0" y="174.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="305.0" y="249.5" />
   <SelectedNodes>
     <node>pattern.chain.ErrorLogger</node>
   </SelectedNodes>
