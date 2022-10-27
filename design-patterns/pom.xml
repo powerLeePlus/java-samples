@@ -23,6 +23,7 @@
         <module>prototype</module>
         <module>proxy</module>
         <module>mediator</module>
+        <module>command</module>
     </modules>
 
     <properties>
