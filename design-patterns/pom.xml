@@ -24,6 +24,7 @@
         <module>proxy</module>
         <module>mediator</module>
         <module>command</module>
+        <module>iterator</module>
     </modules>
 
     <properties>
