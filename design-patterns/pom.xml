@@ -22,6 +22,7 @@
 	    <module>builder</module>
         <module>prototype</module>
         <module>proxy</module>
+        <module>mediator</module>
     </modules>
 
     <properties>
