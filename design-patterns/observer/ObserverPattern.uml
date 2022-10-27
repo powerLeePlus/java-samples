@@ -31,7 +31,7 @@
       <point x="-56.25" y="49.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.7866868381240545" x="344.5" y="320.5" />
+  <settings layout="Hierarchic Group" zoom="0.8275340393343419" x="344.5" y="320.5" />
   <SelectedNodes>
     <node>pattern.observer.OctalObserver</node>
   </SelectedNodes>

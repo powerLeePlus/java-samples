@@ -26,6 +26,7 @@
         <module>command</module>
         <module>iterator</module>
         <module>component</module>
+        <module>facade</module>
     </modules>
 
     <properties>
