@@ -27,6 +27,7 @@
         <module>iterator</module>
         <module>component</module>
         <module>facade</module>
+        <module>memento</module>
     </modules>
 
     <properties>
