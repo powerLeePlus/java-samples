@@ -31,6 +31,7 @@
         <module>visitor</module>
         <module>state</module>
         <module>interpreter</module>
+        <module>flyweight</module>
     </modules>
 
     <properties>
