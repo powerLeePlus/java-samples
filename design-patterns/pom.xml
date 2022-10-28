@@ -32,6 +32,7 @@
         <module>state</module>
         <module>interpreter</module>
         <module>flyweight</module>
+        <module>bridge</module>
     </modules>
 
     <properties>
