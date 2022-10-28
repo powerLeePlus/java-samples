@@ -63,11 +63,12 @@ public class Client {
 			int calculate = calculator.calculate(map);
 			System.out.println("表达式:" + strExpression + "，参数:" + map + "，计算结果:" + calculate);
 			System.out.println("-------------------------------------");
-			System.out.println("是否继续输入表达式计算：按1继续，按其他推出：");
+			System.out.println("是否继续输入表达式计算：按1继续，按其他退出：");
 			Scanner scanner = new Scanner(System.in);
 			String s = scanner.nextLine();
 			if (!s.equals("1")) {
 				run = false;
+				System.out.println("已退出");
 			}
 		}
 	}
