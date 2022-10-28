@@ -30,6 +30,7 @@
         <module>memento</module>
         <module>visitor</module>
         <module>state</module>
+        <module>interpreter</module>
     </modules>
 
     <properties>
