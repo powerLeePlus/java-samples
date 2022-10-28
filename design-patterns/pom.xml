@@ -29,6 +29,7 @@
         <module>facade</module>
         <module>memento</module>
         <module>visitor</module>
+        <module>state</module>
     </modules>
 
     <properties>
