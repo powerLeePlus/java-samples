@@ -28,6 +28,7 @@
         <module>component</module>
         <module>facade</module>
         <module>memento</module>
+        <module>visitor</module>
     </modules>
 
     <properties>
