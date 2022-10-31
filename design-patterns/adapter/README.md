@@ -30,7 +30,7 @@
 - Adapater：适配者：适配器
 - Adapatee：被适配者：mp4/vlc播放器
 
-一句话理解：原有接口A和B，现要求通过A能访问到B，就需要一个中间层C适配
+一句话理解：原有接口A和B，现要求通过A能访问到B，就需要一个中间层C适配(C实现A并持有B,调用B的方法)
 
 ## 3种模式：
 1. 类适配：创建新类，继承源类，并实现新接口，例如 class adapter extends oldClass implements newFunc{}
