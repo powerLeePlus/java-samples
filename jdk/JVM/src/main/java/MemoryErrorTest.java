@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 内存错误案例演示
  * @author lwq
  * @date 2022/6/2 0002
  * @since
