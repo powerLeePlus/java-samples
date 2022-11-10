@@ -42,7 +42,9 @@ hbase
 # 个人博客
 csdn: [https://blog.csdn.net/wenqiangluyao][https://blog.csdn.net/wenqiangluyao]
 
-
+# 微信公众号
+欢迎关注，一起成长
+<img src=".README_images/51969fb7.png" alt="" width="250"/>
 
 [https://blog.csdn.net/wenqiangluyao]: https://blog.csdn.net/wenqiangluyao
 
