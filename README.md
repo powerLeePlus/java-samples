@@ -50,3 +50,6 @@ csdn: [https://blog.csdn.net/wenqiangluyao][https://blog.csdn.net/wenqiangluyao]
 [https://blog.csdn.net/wenqiangluyao]: https://blog.csdn.net/wenqiangluyao
 
 [https://github.com/powerLeePlus/java-samples/tree/master/design-patterns]: https://github.com/powerLeePlus/java-samples/tree/master/design-patterns
+
+# 说明
+- 有些流程图、UML图等图片在各个README.md中没有正常显示，将代码clone到本地可查看。
