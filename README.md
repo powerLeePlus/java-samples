@@ -44,7 +44,8 @@ csdn: [https://blog.csdn.net/wenqiangluyao][https://blog.csdn.net/wenqiangluyao]
 
 # 微信公众号
 欢迎关注，一起成长
-<img src="https://github.com/powerLeePlus/java-samples/blob/master/.README_images/51969fb7.png" alt="" width="250"/>
+
+<img src="https://user-images.githubusercontent.com/25865085/201046189-b725f69f-cc71-4ae0-836e-72c1f203ddb0.png" alt="" width="500"/>
 
 [https://blog.csdn.net/wenqiangluyao]: https://blog.csdn.net/wenqiangluyao
 
