@@ -19,7 +19,7 @@
 	</modules>
 
 	<properties>
-		<version-mysql-driver>5.1.48</version-mysql-driver>
+		<version-mysql-driver>8.0.28</version-mysql-driver>
 	</properties>
 
 	<dependencyManagement>
