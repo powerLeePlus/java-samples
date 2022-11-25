@@ -1,4 +1,4 @@
-package com.lwq.spring.boot.async;
+package com.lwq.spring.aop.annotation;
 
 
 import org.slf4j.Logger;

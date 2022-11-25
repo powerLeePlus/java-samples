@@ -12,6 +12,7 @@
 	<modules>
 		<module>spring-mvc</module>
 		<module>spring-ioc</module>
+		<module>spring-aop-annotation</module>
 	</modules>
 
     <dependencies>

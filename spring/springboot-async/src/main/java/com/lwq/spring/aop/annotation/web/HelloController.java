@@ -1,4 +1,4 @@
-package com.lwq.spring.boot.async.web;
+package com.lwq.spring.aop.annotation.web;
 
 import java.time.LocalTime;
 import java.util.concurrent.*;
@@ -14,7 +14,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
-import com.lwq.spring.boot.async.service.HelloService;
+import com.lwq.spring.aop.annotation.service.HelloService;
 
 @RestController
 public class HelloController {
