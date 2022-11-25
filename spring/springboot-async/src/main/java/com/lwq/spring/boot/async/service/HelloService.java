@@ -1,4 +1,4 @@
-package com.lwq.spring.aop.annotation.service;
+package com.lwq.spring.boot.async.service;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
