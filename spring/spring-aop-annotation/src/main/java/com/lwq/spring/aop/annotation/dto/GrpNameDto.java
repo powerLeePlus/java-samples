@@ -15,6 +15,10 @@ public class GrpNameDto implements OrgDto {
 	 * 小组名称
 	 */
 	private String grpName;
+	/**
+	 * 所属部门ID
+	 */
+	private Integer depId;
 
 	public Integer getId() {
 		return id;
@@ -32,6 +36,14 @@ public class GrpNameDto implements OrgDto {
 		this.grpName = grpName;
 	}
 
+	public Integer getDepId() {
+		return depId;
+	}
+
+	public void setDepId(Integer depId) {
+		this.depId = depId;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("{");
@@ -39,6 +51,8 @@ public class GrpNameDto implements OrgDto {
 				.append(id);
 		sb.append(",\"grpName\":\"")
 				.append(grpName).append('\"');
+		sb.append(",\"depId\":")
+				.append(depId);
 		sb.append('}');
 		return sb.toString();
 	}

@@ -28,4 +28,14 @@ public interface OrganizationService {
 	 * @param sessionUser
 	 */
 	List<MemberNameDto> getAuthMembers(SessionUser sessionUser);
+
+	/**
+	 * 获取当前登录用户能看的小组(需要指定具体哪个部门下的)
+	 */
+	List<GrpNameDto> getAuthGrps2(SessionUser sessionUser, Integer depId);
+	/**
+	 * 获取当前登录用户能看的成员(需要指定具体哪个小组下的)
+	 * @param sessionUser
+	 */
+	List<MemberNameDto> getAuthMembers2(SessionUser sessionUser, Integer grpId);
 }

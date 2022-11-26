@@ -19,6 +19,10 @@ public class MemberNameDto implements OrgDto {
 	 * 成员邮箱
 	 */
 	private String email;
+	/**
+	 * 所属小组ID
+	 */
+	private Integer grpId;
 
 	public Integer getId() {
 		return id;
@@ -44,6 +48,14 @@ public class MemberNameDto implements OrgDto {
 		this.email = email;
 	}
 
+	public Integer getGrpId() {
+		return grpId;
+	}
+
+	public void setGrpId(Integer grpId) {
+		this.grpId = grpId;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("{");
@@ -53,6 +65,8 @@ public class MemberNameDto implements OrgDto {
 				.append(name).append('\"');
 		sb.append(",\"email\":\"")
 				.append(email).append('\"');
+		sb.append(",\"grpId\":")
+				.append(grpId);
 		sb.append('}');
 		return sb.toString();
 	}

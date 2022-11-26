@@ -14,7 +14,7 @@ public class SessionUtil {
 	public static SessionUser getSessionUser() {
 		// 获取登录用户，这里只是举个例子
 		Random random = new Random();
-		int nextInt = random.nextInt(3);
+		int nextInt = random.nextInt(2) + 1;
 		SessionUser sessionUser = new SessionUser();
 		if (nextInt == 1) {
 			sessionUser.setId(1);

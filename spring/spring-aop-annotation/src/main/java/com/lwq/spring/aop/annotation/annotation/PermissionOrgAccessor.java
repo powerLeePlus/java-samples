@@ -2,6 +2,8 @@ package com.lwq.spring.aop.annotation.annotation;
 
 import java.lang.annotation.*;
 
+import com.lwq.spring.aop.annotation.dto.OrgDto;
+
 /**
  * 当前登录用户被授权的组织管理(部门|小组|成员|成员ID)列表获取声明
  * @author lwq

@@ -37,9 +37,10 @@ public class PermissionOrgAccessorAspect {
 	private OrganizationService organizationService;
 
 	/**
-	 * 连接标注了{@link PermissionOrgAccessor}注解的方法
+	 * 连接标注了{@link PermissionOrgAccessor}注解的方法，
+	 * 自动注入参数，不依赖其他参数
 	 */
-	@Around("@annotation(com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor)")
+	// @Around("@annotation(com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor)")
 	public Object resolvePermissionOrgValue(ProceedingJoinPoint point) throws Throwable {
 		logger.debug("aop获取当前登录用户被授权的组织管理成员列表");
 		Object[] args = point.getArgs();
@@ -66,6 +67,48 @@ public class PermissionOrgAccessorAspect {
 					} else if (clazz.equals(MemberNameDto.class)) {
 						//成员
 						args[i] = organizationService.getAuthMembers(sessionUser);
+					}
+				}
+			}
+		}
+		return point.proceed(args);
+	}
+
+	/**
+	 * 连接标注了{@link PermissionOrgAccessor}注解的方法，
+	 * 自动注入参数，需要依赖其他参数
+	 */
+	@Around("@annotation(com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor)")
+	public Object resolvePermissionOrgValueDepend(ProceedingJoinPoint point) throws Throwable {
+		logger.debug("aop获取当前登录用户被授权的组织管理成员列表");
+		Object[] args = point.getArgs();
+		MethodSignature signature = (MethodSignature) point.getSignature();
+		Method method = signature.getMethod();
+		Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+		Type[] genericParameterTypes = method.getGenericParameterTypes();
+		for (int i = 0; i < parameterAnnotations.length; i++) {
+			Annotation[] parameterAnnotation = parameterAnnotations[i];
+			for (Annotation annotation : parameterAnnotation) {
+				// 只有参数被@PermissionOrg注解的才会处理
+				if (annotation.annotationType().equals(PermissionOrg.class)) {
+					Type type = genericParameterTypes[i];
+					ParameterizedType pt = (ParameterizedType) type;
+					Type[] types = pt.getActualTypeArguments();
+					Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
+					SessionUser sessionUser = SessionUtil.getSessionUser();
+					if (clazz.equals(DepNameDto.class)) {
+						//部门
+						args[i] = organizationService.getAuthDeps(sessionUser);
+					} else {
+						PermissionOrg permissionOrg = (PermissionOrg) annotation;
+						int index = permissionOrg.value();
+						if (clazz.equals(GrpNameDto.class)) {
+							//小组
+							args[i] = organizationService.getAuthGrps2(sessionUser, (Integer) args[index]);
+						} else if (clazz.equals(MemberNameDto.class)) {
+							//成员
+							args[i] = organizationService.getAuthMembers2(sessionUser, (Integer) args[index]);
+						}
 					}
 				}
 			}

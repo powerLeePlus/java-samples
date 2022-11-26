@@ -29,7 +29,7 @@ public class HelloServiceImpl implements HelloService {
 
 	@PermissionOrgAccessor
 	@Override
-	public void grpOperation(String msg, @PermissionOrg List<GrpNameDto> grpNameDtos) {
+	public void grpOperation(String msg, @PermissionOrg() List<GrpNameDto> grpNameDtos) {
 		logger.info("grpOperation->我直接就拿到grp信息了:{}，其他处理:{}", grpNameDtos, msg);
 	}
 
@@ -38,6 +38,29 @@ public class HelloServiceImpl implements HelloService {
 	public void memberOperation(@PermissionOrg List<MemberNameDto> memberNameDtos, String msg) {
 		logger.info("memberOperation->我直接就拿到member信息了:{}，其他处理:{}", memberNameDtos, msg);
 	}
+
+	/**
+	 * 要想自动注入参数：
+	 * @param grpNameDtos 的值，需要依赖参数：
+	 * @param depId，则需要在 {@link PermissionOrg}注解中指明该参数所在位置，即：2
+	 */
+	@PermissionOrgAccessor
+	@Override
+	public void grpOperation2(String msg, @PermissionOrg(2) List<GrpNameDto> grpNameDtos, Integer depId) {
+		logger.info("grpOperation->我直接就拿到grp信息了:{}，其他处理:{}", grpNameDtos, msg);
+	}
+
+	/**
+	 * 要想自动注入参数：
+	 * @param memberNameDtos 的值，需要依赖参数：
+	 * @param grpId，则需要在 {@link PermissionOrg}注解中指明该参数所在位置，即：0
+	 */
+	@PermissionOrgAccessor
+	@Override
+	public void memberOperation2(Integer grpId, @PermissionOrg(0) List<MemberNameDto> memberNameDtos, String msg) {
+		logger.info("memberOperation->我直接就拿到member信息了:{}，其他处理:{}", memberNameDtos, msg);
+	}
+
 
 	@PermissionOrgAccessor
 	@Override
