@@ -16,8 +16,14 @@ public class HelloController {
 	@Autowired
 	private HelloService helloService;
 
+	// @PermissionOrgAccessor
 	@GetMapping("/test")
 	public String test() {
+	/**
+	 * @PermissionOrg注解用在Controller方法上也行。
+	 * 只是需要通过注解@RequestParam(required = false)表明该参数可为null(可不传)，否则会报错
+	 */
+	// public String test(@PermissionOrg @RequestParam(required = false) List<DepNameDto> depNameDtos) {
 		// 自动注入不依赖其它参数 start
 		// helloService.depOperation(null);
 		// helloService.grpOperation("小组长集合", null);

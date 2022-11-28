@@ -94,6 +94,9 @@ public class PermissionOrgAccessorAspect {
 					Type type = genericParameterTypes[i];
 					ParameterizedType pt = (ParameterizedType) type;
 					Type[] types = pt.getActualTypeArguments();
+					// Type ownerType = pt.getOwnerType();  // null
+					// Type rawType = pt.getRawType(); // List.class
+					// String typeName = pt.getTypeName(); // java.util.List<? extends OrgDto>
 					Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
 					SessionUser sessionUser = SessionUtil.getSessionUser();
 					if (clazz.equals(DepNameDto.class)) {
