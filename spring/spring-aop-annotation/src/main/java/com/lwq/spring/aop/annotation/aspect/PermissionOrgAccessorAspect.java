@@ -1,6 +1,7 @@
 package com.lwq.spring.aop.annotation.aspect;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -78,6 +79,51 @@ public class PermissionOrgAccessorAspect {
 	 * 连接标注了{@link PermissionOrgAccessor}注解的方法，
 	 * 自动注入参数，需要依赖其他参数
 	 */
+	// @Around("@annotation(com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor)")
+	// public Object resolvePermissionOrgValueDepend(ProceedingJoinPoint point) throws Throwable {
+	// 	logger.debug("aop获取当前登录用户被授权的组织管理成员列表");
+	// 	Object[] args = point.getArgs();
+	// 	MethodSignature signature = (MethodSignature) point.getSignature();
+	// 	Method method = signature.getMethod();
+	// 	Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+	// 	Type[] genericParameterTypes = method.getGenericParameterTypes();
+	// 	for (int i = 0; i < parameterAnnotations.length; i++) {
+	// 		Annotation[] parameterAnnotation = parameterAnnotations[i];
+	// 		for (Annotation annotation : parameterAnnotation) {
+	// 			// 只有参数被@PermissionOrg注解的才会处理
+	// 			if (annotation.annotationType().equals(PermissionOrg.class)) {
+	// 				Type type = genericParameterTypes[i];
+	// 				ParameterizedType pt = (ParameterizedType) type;
+	// 				Type[] types = pt.getActualTypeArguments();
+	// 				// Type ownerType = pt.getOwnerType();  // null
+	// 				// Type rawType = pt.getRawType(); // List.class
+	// 				// String typeName = pt.getTypeName(); // java.util.List<? extends OrgDto>
+	// 				Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
+	// 				SessionUser sessionUser = SessionUtil.getSessionUser();
+	// 				if (clazz.equals(DepNameDto.class)) {
+	// 					//部门
+	// 					args[i] = organizationService.getAuthDeps(sessionUser);
+	// 				} else {
+	// 					PermissionOrg permissionOrg = (PermissionOrg) annotation;
+	// 					int index = permissionOrg.value();
+	// 					if (clazz.equals(GrpNameDto.class)) {
+	// 						//小组
+	// 						args[i] = organizationService.getAuthGrps2(sessionUser, (Integer) args[index]);
+	// 					} else if (clazz.equals(MemberNameDto.class)) {
+	// 						//成员
+	// 						args[i] = organizationService.getAuthMembers2(sessionUser, (Integer) args[index]);
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	return point.proceed(args);
+	// }
+
+	/**
+	 * 连接标注了{@link PermissionOrgAccessor}注解的方法，
+	 * 自动注入参数，需要依赖其他参数（同时支持在参数类上注解{@link PermissionOrg}，要自动注入赋值的是该类上的某个field）
+	 */
 	@Around("@annotation(com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor)")
 	public Object resolvePermissionOrgValueDepend(ProceedingJoinPoint point) throws Throwable {
 		logger.debug("aop获取当前登录用户被授权的组织管理成员列表");
@@ -86,31 +132,63 @@ public class PermissionOrgAccessorAspect {
 		Method method = signature.getMethod();
 		Annotation[][] parameterAnnotations = method.getParameterAnnotations();
 		Type[] genericParameterTypes = method.getGenericParameterTypes();
+		Class<?>[] parameterTypes = method.getParameterTypes();
 		for (int i = 0; i < parameterAnnotations.length; i++) {
 			Annotation[] parameterAnnotation = parameterAnnotations[i];
 			for (Annotation annotation : parameterAnnotation) {
 				// 只有参数被@PermissionOrg注解的才会处理
 				if (annotation.annotationType().equals(PermissionOrg.class)) {
 					Type type = genericParameterTypes[i];
-					ParameterizedType pt = (ParameterizedType) type;
-					Type[] types = pt.getActualTypeArguments();
-					// Type ownerType = pt.getOwnerType();  // null
-					// Type rawType = pt.getRawType(); // List.class
-					// String typeName = pt.getTypeName(); // java.util.List<? extends OrgDto>
-					Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
-					SessionUser sessionUser = SessionUtil.getSessionUser();
-					if (clazz.equals(DepNameDto.class)) {
-						//部门
-						args[i] = organizationService.getAuthDeps(sessionUser);
+					if (type instanceof ParameterizedType) {
+						ParameterizedType pt = (ParameterizedType) type;
+						Type[] types = pt.getActualTypeArguments();
+						// Type ownerType = pt.getOwnerType();  // null
+						// Type rawType = pt.getRawType(); // List.class
+						// String typeName = pt.getTypeName(); // java.util.List<? extends OrgDto>
+						Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
+						SessionUser sessionUser = SessionUtil.getSessionUser();
+						if (clazz.equals(DepNameDto.class)) {
+							//部门
+							args[i] = organizationService.getAuthDeps(sessionUser);
+						} else {
+							PermissionOrg permissionOrg = (PermissionOrg) annotation;
+							int index = permissionOrg.value();
+							if (clazz.equals(GrpNameDto.class)) {
+								//小组
+								args[i] = organizationService.getAuthGrps2(sessionUser, (Integer) args[index]);
+							} else if (clazz.equals(MemberNameDto.class)) {
+								//成员
+								args[i] = organizationService.getAuthMembers2(sessionUser, (Integer) args[index]);
+							}
+						}
 					} else {
 						PermissionOrg permissionOrg = (PermissionOrg) annotation;
-						int index = permissionOrg.value();
-						if (clazz.equals(GrpNameDto.class)) {
-							//小组
-							args[i] = organizationService.getAuthGrps2(sessionUser, (Integer) args[index]);
-						} else if (clazz.equals(MemberNameDto.class)) {
-							//成员
-							args[i] = organizationService.getAuthMembers2(sessionUser, (Integer) args[index]);
+						// 需要检查要自动注入赋值的是该参数类上的某个field
+						Class<?> parameterType = parameterTypes[i];
+						String paramField = permissionOrg.paramField();
+						Field declaredField = parameterType.getDeclaredField(paramField);
+						Type genericType = declaredField.getGenericType();
+						declaredField.setAccessible(true);
+						if (genericType instanceof ParameterizedType) {
+							ParameterizedType pt = (ParameterizedType) genericType;
+							Type[] types = pt.getActualTypeArguments();
+							Class<? extends OrgDto> clazz = (Class<? extends OrgDto>) types[0];
+							SessionUser sessionUser = SessionUtil.getSessionUser();
+							if (clazz.equals(DepNameDto.class)) {
+								//部门
+								declaredField.set(args[i], organizationService.getAuthDeps(sessionUser));
+							} else {
+								int index = permissionOrg.value();
+								if (clazz.equals(GrpNameDto.class)) {
+									//小组
+									GrpSearceDto arg = (GrpSearceDto)args[i];
+									List<GrpNameDto> authGrps2 = organizationService.getAuthGrps2(sessionUser, (Integer) args[index]);
+									declaredField.set(arg, authGrps2);
+								} else if (clazz.equals(MemberNameDto.class)) {
+									//成员
+									declaredField.set(args[i], organizationService.getAuthMembers2(sessionUser, (Integer) args[index]));
+								}
+							}
 						}
 					}
 				}

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.spring.aop.annotation.dto.GrpSearceDto;
 import com.lwq.spring.aop.annotation.service.HelloService;
 
 
@@ -33,10 +34,16 @@ public class HelloController {
 		// 自动注入不依赖其它参数 end
 
 		// 自动注入需要依赖其它参数 start
-		helloService.depOperation(null);
-		helloService.grpOperation2("小组长集合", null, 2);
-		helloService.memberOperation2(3, null, "战士冲啊");
+		// helloService.depOperation(null);
+		// helloService.grpOperation2("小组长集合", null, 2);
+		// helloService.memberOperation2(3, null, "战士冲啊");
 		// 自动注入不依赖其它参数 end
+
+		// 自动注入，依赖其他参数，参数上注解@PermissionOrg，但是要自动注入赋值的是该参数类上的某个field start
+		GrpSearceDto grpSearceDto = new GrpSearceDto();
+		grpSearceDto.setName("哈哈");
+		helloService.grpOperation3("小组长集合", 2, grpSearceDto);
+		// 自动注入，依赖其他参数，参数上注解@PermissionOrg，但是要自动注入赋值的是该参数类上的某个field end
 		return "ok";
 	}
 }

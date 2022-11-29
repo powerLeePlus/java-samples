@@ -10,6 +10,7 @@ import com.lwq.spring.aop.annotation.annotation.PermissionOrg;
 import com.lwq.spring.aop.annotation.annotation.PermissionOrgAccessor;
 import com.lwq.spring.aop.annotation.dto.DepNameDto;
 import com.lwq.spring.aop.annotation.dto.GrpNameDto;
+import com.lwq.spring.aop.annotation.dto.GrpSearceDto;
 import com.lwq.spring.aop.annotation.dto.MemberNameDto;
 import com.lwq.spring.aop.annotation.service.HelloService;
 
@@ -72,5 +73,12 @@ public class HelloServiceImpl implements HelloService {
 	@Override
 	public void oneDepOperation2(DepNameDto depNameDto, String msg) {
 		logger.info("oneDepOperation2->我直接就拿到dep信息了:{}，其他处理:{}", depNameDto, msg);
+	}
+
+	@PermissionOrgAccessor
+	@Override
+	public void grpOperation3(String msg, Integer depId, @PermissionOrg(value = 1, paramField = "grpNameDtos") GrpSearceDto grpSearceDto) {
+		logger.info("grpOperation3->我通过grpSearceDto也能直接拿到dep信息:{}，其他处理:{}", grpSearceDto.getGrpNameDtos(), msg);
+
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lwq.spring.aop.annotation.dto.DepNameDto;
 import com.lwq.spring.aop.annotation.dto.GrpNameDto;
+import com.lwq.spring.aop.annotation.dto.GrpSearceDto;
 import com.lwq.spring.aop.annotation.dto.MemberNameDto;
 
 /**
@@ -38,5 +39,13 @@ public interface HelloService {
 	public void oneDepOperation2(DepNameDto depNameDto, String msg);
 	/**
 	 * 自动注入，不依赖其他参数，参数类型class上注解拦截 end
+	 */
+
+	/**
+	 * 自动注入，依赖其他参数，参数上注解@PermissionOrg，但是要自动注入赋值的是该参数类上的某个field start
+	 */
+	public void grpOperation3(String msg, Integer depId, GrpSearceDto grpSearceDto);
+	/**
+	 * 自动注入，依赖其他参数，参数上注解@PermissionOrg，但是要自动注入赋值的是该参数类上的某个field end
 	 */
 }
